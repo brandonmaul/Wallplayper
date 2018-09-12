@@ -17,3 +17,11 @@ Program that will automatically set the desktop wallpaper on computer. Will pull
 * Localization
 * Meme of the day
 * Can operate offline
+
+
+
+
+## Useful Links
+* [Piazza for 442](https://piazza.com/class/jl3wrln06fq2rm)
+* [Hertz's 442 page](https://cse.buffalo.edu/~mhertz/courses/cse442/)
+* [ZenHub](https://www.zenhub.com/)
