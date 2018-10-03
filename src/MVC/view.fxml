@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="471.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MVC.Controller">
+
+    <children>
+        <AnchorPane fx:id="save_pane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+            <children>
+                <Label layoutX="70.0" layoutY="184.0" text="PICTURE SAVED TO DESKTOP &#10;COMMING SOON! :)" textAlignment="CENTER" textFill="LIGHTGRAY">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+                <ImageView layoutX="180.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/upArrow_20px.png" />
+                    </image>
+                </ImageView>
+            </children></AnchorPane>
+        <AnchorPane fx:id="sett_pane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+            <children>
+                <ImageView layoutX="110.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/upArrow_20px.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="72.0" layoutY="194.0" text="MORE SETTINGS TO COME! :)" textAlignment="CENTER" textFill="LIGHTGRAY">
+                    <font>
+                        <Font size="16.0" />
+                    </font>
+                </Label>
+            </children></AnchorPane>
+        <AnchorPane fx:id="blank_pane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;" />
+        <AnchorPane fx:id="quick_sett_mouse_off" onMouseEntered="#mouseEnterdQuickSettPane" prefHeight="59.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+            <children>
+                <ImageView fx:id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/save.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="min_btn" layoutX="268.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/minimize.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="close_btn" layoutX="335.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/close.png" />
+                    </image>
+                </ImageView>
+                <Label layoutX="30.0" layoutY="15.0" text="Weather Info&#10;Goes Here" textFill="LIGHTGRAY" />
+                <Button fx:id="close_btn1" ellipsisString="" layoutX="335.0" layoutY="15.0" mnemonicParsing="false" onAction="#close_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+                <Button fx:id="min_btn1" ellipsisString="" layoutX="268.0" layoutY="15.0" mnemonicParsing="false" onAction="#minimize_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+                <Button fx:id="save_btn1" ellipsisString="" layoutX="169.0" layoutY="15.0" mnemonicParsing="false" onAction="#save_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="quick_sett_mouse_on" onMouseExited="#mouseExeitedQuickSettPane" prefHeight="59.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+            <children>
+                <ImageView fx:id="img_btn" layoutX="35.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/picture.png" />
+                    </image>
+                </ImageView>
+                <ImageView fx:id="sett_btn" layoutX="102.0" layoutY="15.0" onMouseClicked="#settings_clicked" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/settings.png" />
+                    </image>
+                </ImageView>
+                <ImageView id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/save.png" />
+                    </image>
+                </ImageView>
+                <ImageView id="min_btn" layoutX="268.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/minimize.png" />
+                    </image>
+                </ImageView>
+                <ImageView id="close_btn" layoutX="335.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/close.png" />
+                    </image>
+                </ImageView>
+                <Button fx:id="img_btn2" ellipsisString="" layoutX="35.0" layoutY="15.0" mnemonicParsing="false" onAction="#image_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+                <Button fx:id="sett_btn2" ellipsisString="" layoutX="102.0" layoutY="15.0" mnemonicParsing="false" onAction="#settings_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+                <Button fx:id="close_btn2" ellipsisString="" layoutX="335.0" layoutY="15.0" mnemonicParsing="false" onAction="#close_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+                <Button fx:id="save_btn2" ellipsisString="" layoutX="169.0" layoutY="15.0" mnemonicParsing="false" onAction="#save_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+                <Button fx:id="min_btn2" ellipsisString="" layoutX="268.0" layoutY="15.0" mnemonicParsing="false" onAction="#minimize_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
+            </children>
+        </AnchorPane>
+        <AnchorPane fx:id="img_pane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+            <children>
+                <Label layoutX="47.0" layoutY="44.0" text="Reddit Source" textFill="LIGHTGRAY">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <TextField layoutX="190.0" layoutY="52.0" promptText="r/subredditt" />
+                <Label layoutX="47.0" layoutY="110.0" text="NSFW Filter" textFill="LIGHTGRAY">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <ToggleButton id="nsfw_btn" contentDisplay="CENTER" layoutX="190.0" layoutY="118.0" mnemonicParsing="false" onAction="#nsfw_action" selected="true" styleClass="jfx-toggle-button"  text="ON" />
+                <Label layoutX="47.0" layoutY="131.0" text="Enables or disables not &#10;suitable for work images." textFill="LIGHTGRAY">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <Label layoutX="47.0" layoutY="65.0" text="Reddit source you want &#10;images displayed from." textFill="LIGHTGRAY">
+                    <font>
+                        <Font size="10.0" />
+                    </font>
+                </Label>
+                <Separator layoutX="30.0" layoutY="192.0" opacity="0.33" prefHeight="1.0" prefWidth="320.0" />
+                <Slider layoutX="30.0" layoutY="251.0" prefHeight="16.0" prefWidth="320.0" showTickMarks="true" snapToTicks="true" />
+                <Label layoutX="31.0" layoutY="220.0" text="Change Wallpaper Every..." textFill="LIGHTGRAY">
+                    <font>
+                        <Font name="System Bold" size="13.0" />
+                    </font>
+                </Label>
+                <Label layoutX="26.0" layoutY="274.0" text="10min" textFill="LIGHTGRAY" />
+                <Label layoutX="324.0" layoutY="274.0" text="24Hr" textFill="LIGHTGRAY" />
+                <Button layoutX="212.0" layoutY="340.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #eda678; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Save" />
+                <Button layoutX="42.0" layoutY="340.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #d3d3d3; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Cancel" />
+                <Label layoutX="128.0" layoutY="376.0" text="For More Settings Click The Gear Icon On Top" textFill="LIGHTGRAY">
+                    <font>
+                        <Font name="System Italic" size="10.0" />
+                    </font>
+                </Label>
+                <ImageView layoutX="40.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../images/upArrow_20px.png" />
+                    </image>
+                </ImageView>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
