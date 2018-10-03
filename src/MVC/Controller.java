@@ -3,6 +3,7 @@ package MVC;
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -10,14 +11,14 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class Controller {
+public class Controller implements Initializable {
 
     /** These are javaFX specific variables, in order to modify an xml element the xml needs to have
         an fx:id which we will reference in code here(Controller.java). In order to manipulate a desired xml element you need
         to make a variable here and name it the **same name as you put in fx:id** make sure to add an '@FXML'  before the vvariable name,
         this lets the controller  java class to link that variable to a specific xml element **/
     @FXML
-    private AnchorPane img_pane, sett_pane, save_pane, blank_pane, quick_sett_mouse_on, quick_sett_mouse_off, main_sett_pane;
+    private AnchorPane img_pane, sett_pane, save_pane, blank_pane, quick_sett_mouse_on, quick_sett_mouse_off;
     @FXML
     private ToggleButton nsfw_btn;
     @FXML
@@ -29,7 +30,7 @@ public class Controller {
     private boolean nsfw_toggle_select = true;
 
 
-    public void image_action(ActionEvent e) {
+    public void image_action() {
         set_pane_to("image");
 
     }
@@ -97,6 +98,7 @@ public class Controller {
     *             if you put an invalid string it will go to a default blank screen.
     *
     *
+    * this function will need to be modified as we add more features to our project.
     * */
 
     private void set_pane_to(String s){
@@ -108,36 +110,28 @@ public class Controller {
             img_pane.setVisible(true);
             sett_pane.setVisible(false);
             save_pane.setVisible(false);
-            blank_pane.setVisible(false);
         } else if (s.equalsIgnoreCase("settings")){
             img_pane.setVisible(false);
             sett_pane.setVisible(true);
             save_pane.setVisible(false);
-            blank_pane.setVisible(false);
         } else if (s.equalsIgnoreCase("save")) {
             img_pane.setVisible(false);
             sett_pane.setVisible(false);
             save_pane.setVisible(true);
-            blank_pane.setVisible(false);
         } else if (s.equalsIgnoreCase("minimize")) {
             img_pane.setVisible(false);
             sett_pane.setVisible(false);
             save_pane.setVisible(false);
-            blank_pane.setVisible(false);
         } else if(s.equalsIgnoreCase("close")){
             img_pane.setVisible(false);
             sett_pane.setVisible(false);
             save_pane.setVisible(false);
-            blank_pane.setVisible(false);
         } else {
             img_pane.setVisible(false);
             sett_pane.setVisible(false);
             save_pane.setVisible(false);
-            blank_pane.setVisible(true);
         }
     }
-
-    //@Override
     /*
     * Will be called once on an implementing controller when the contents of its associated document have
     * been completely loaded. This allows the implementing class to perform any necessary post-processing on the content.
@@ -146,6 +140,7 @@ public class Controller {
     * specify what you want the application to do as soon as it starts up < can be very useful.
     *
     * */
+    @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         set_pane_to("");

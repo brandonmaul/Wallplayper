@@ -111,7 +111,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Label>
-                <ToggleButton id="nsfw_btn" contentDisplay="CENTER" layoutX="190.0" layoutY="118.0" mnemonicParsing="false" onAction="#nsfw_action" selected="true" styleClass="jfx-toggle-button"  text="ON" />
+                <ToggleButton id="nsfw_btn" contentDisplay="CENTER" layoutX="190.0" layoutY="118.0" mnemonicParsing="false" onAction="#nsfw_action" selected="true" styleClass="jfx-toggle-button" stylesheets="@CSS/styleSheet.css" text="ON" />
                 <Label layoutX="47.0" layoutY="131.0" text="Enables or disables not &#10;suitable for work images." textFill="LIGHTGRAY">
                     <font>
                         <Font size="10.0" />
