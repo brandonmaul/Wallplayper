@@ -1,4 +1,4 @@
-<component name="ArtifactManager">
+<component name="ArtifactManager" >
   <artifact type="javafx" name="JavaFXApp">
     <output-path>$PROJECT_DIR$/out/artifacts/JavaFXApp</output-path>
     <properties id="javafx-properties">
