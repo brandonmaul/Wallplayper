@@ -104,10 +104,14 @@ fabric.properties
 .idea/caches/build_file_checksums.ser
 
 
- *.iml
-# modules.xml
- .idea/misc.xml
-# *.ipr
+*.iml
+modules.xml
+
+dataSources.ids
+datasources.xml
+
+#.idea/misc.xml
+*.ipr
 src/META-INF/
 
 # Sonarlint plugin
