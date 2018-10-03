@@ -23,7 +23,7 @@
                 </Label>
                 <ImageView layoutX="180.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/upArrow_20px.png" />
+                        <Image url="@../Images/upArrow_20px.png" />
                     </image>
                 </ImageView>
             </children></AnchorPane>
@@ -31,7 +31,7 @@
             <children>
                 <ImageView layoutX="110.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/upArrow_20px.png" />
+                        <Image url="@../Images/upArrow_20px.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="72.0" layoutY="194.0" text="MORE SETTINGS TO COME! :)" textAlignment="CENTER" textFill="LIGHTGRAY">
@@ -45,17 +45,17 @@
             <children>
                 <ImageView fx:id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/save.png" />
+                        <Image url="@../Images/save.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="min_btn" layoutX="268.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/minimize.png" />
+                        <Image url="@../Images/minimize.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="close_btn" layoutX="335.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/close.png" />
+                        <Image url="@../Images/close.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="30.0" layoutY="15.0" text="Weather Info&#10;Goes Here" textFill="LIGHTGRAY" />
@@ -68,27 +68,27 @@
             <children>
                 <ImageView fx:id="img_btn" layoutX="35.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/picture.png" />
+                        <Image url="@../Images/picture.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="sett_btn" layoutX="102.0" layoutY="15.0" onMouseClicked="#settings_clicked" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/settings.png" />
+                        <Image url="@../Images/settings.png" />
                     </image>
                 </ImageView>
                 <ImageView id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/save.png" />
+                        <Image url="@../Images/save.png" />
                     </image>
                 </ImageView>
                 <ImageView id="min_btn" layoutX="268.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/minimize.png" />
+                        <Image url="@../Images/minimize.png" />
                     </image>
                 </ImageView>
                 <ImageView id="close_btn" layoutX="335.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/close.png" />
+                        <Image url="@../Images/close.png" />
                     </image>
                 </ImageView>
                 <Button fx:id="img_btn2" ellipsisString="" layoutX="35.0" layoutY="15.0" mnemonicParsing="false" onAction="#image_action" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
@@ -111,7 +111,7 @@
                         <Font name="System Bold" size="13.0" />
                     </font>
                 </Label>
-                <ToggleButton id="nsfw_btn" contentDisplay="CENTER" layoutX="190.0" layoutY="118.0" mnemonicParsing="false" onAction="#nsfw_action" selected="true" styleClass="jfx-toggle-button" stylesheets="@CSS/styleSheet.css" text="ON" />
+                <ToggleButton id="nsfw_btn" fx:id="nsfw_btn" contentDisplay="CENTER" layoutX="190.0" layoutY="118.0" mnemonicParsing="false" onAction="#nsfw_action" selected="true" styleClass="jfx-toggle-button" stylesheets="@CSS/styleSheet.css" text="ON" />
                 <Label layoutX="47.0" layoutY="131.0" text="Enables or disables not &#10;suitable for work images." textFill="LIGHTGRAY">
                     <font>
                         <Font size="10.0" />
@@ -140,7 +140,7 @@
                 </Label>
                 <ImageView layoutX="40.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@../images/upArrow_20px.png" />
+                        <Image url="@../Images/upArrow_20px.png" />
                     </image>
                 </ImageView>
             </children>

@@ -144,6 +144,8 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         set_pane_to("");
+        quick_sett_mouse_off.setVisible(true);
+        quick_sett_mouse_on.setVisible(false);
 
     }
 }

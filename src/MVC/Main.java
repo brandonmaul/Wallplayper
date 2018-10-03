@@ -22,6 +22,7 @@ public class Main extends Application {
         //stage.setOpacity(0.5);
         stage.setScene(scene);
         stage.show();
+
     }
 
     /**
