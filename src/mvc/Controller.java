@@ -1,4 +1,4 @@
-package MVC;
+package mvc;
 
 import javafx.scene.input.MouseEvent;
 import java.net.URL;
