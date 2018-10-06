@@ -1,4 +1,4 @@
-package mvc;
+package controller;
 
 import javafx.scene.input.MouseEvent;
 
