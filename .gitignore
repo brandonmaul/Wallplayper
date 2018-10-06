@@ -113,6 +113,7 @@ datasources.xml
 #.idea/misc.xml
 *.ipr
 src/META-INF/
+META-INF/
 
 # Sonarlint plugin
 .idea/sonarlint
