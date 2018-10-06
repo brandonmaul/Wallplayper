@@ -24,7 +24,7 @@ std::wstring get_current_directory_on_windows()
 int8_t run_application_on_boot()
 {
     HKEY hkey;
-    std::wstring prog_path = get_current_directory_on_windows() +L"\\wallplayper.jar\0";
+    std::wstring prog_path = get_current_directory_on_windows() +L"\\Wallplayper.jar\0";
     LONG create_status = RegCreateKeyW(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", &hkey); //Creates a key
     LONG value_status = RegSetValueExW(hkey, L"Wallplayper", 0, REG_SZ, (BYTE *)prog_path.c_str(), (prog_path.size()+1) * sizeof(wchar_t));
     LONG close_key_status = RegCloseKey(hkey);

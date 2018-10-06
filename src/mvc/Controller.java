@@ -1,6 +1,7 @@
 package mvc;
 
 import javafx.scene.input.MouseEvent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
@@ -18,29 +19,31 @@ public class Controller implements Initializable {
         to make a variable here and name it the **same name as you put in fx:id** make sure to add an '@FXML'  before the vvariable name,
         this lets the controller  java class to link that variable to a specific xml element **/
     @FXML
-    private AnchorPane img_pane, sett_pane, save_pane, blank_pane, quick_sett_mouse_on, quick_sett_mouse_off;
+    private AnchorPane imgPane, settingsPane, savePane , quickSettMouseOn, quickSettMouseOff, blankPane;
     @FXML
-    private ToggleButton nsfw_btn;
+    private ToggleButton nsfwBtn;
     @FXML
-    private Button close_btn1;
+    private Button closeBtn;
     @FXML
-    private Button min_btn1;
+    private Button minBtn;
+
+
 
     /* to change the NSFW toggle on and off*/
-    private boolean nsfw_toggle_select = true;
+    private boolean nsfwToggleSelect = true;
 
 
-    public void image_action() {
-        set_pane_to("image");
+    public void imageAction(ActionEvent e) {
+        setPaneTo("image");
 
     }
 
-    public void settings_action(){
-        set_pane_to("settings");
+    public void settingsAction(ActionEvent e){
+        setPaneTo("settings");
     }
 
-    public void save_action(){
-        set_pane_to("save");
+    public void saveAction(ActionEvent e){
+        setPaneTo("save");
     }
 
     /*
@@ -48,8 +51,8 @@ public class Controller implements Initializable {
     *  the application so we get the root node (stage) and we call setIconified() on our stage which in turn minimizes
     *  teh application.
     */
-    public void minimize_action(){
-        Stage stage = (Stage) min_btn1.getScene().getWindow();
+    public void minimizeAction(ActionEvent e){
+        Stage stage = (Stage) minBtn.getScene().getWindow();
         stage.setIconified(true);
     }
 
@@ -58,39 +61,36 @@ public class Controller implements Initializable {
     *  the application so we get the root node (stage) and we call close() on our stage which in turn minimizes
     *  closes the application.
     */
-    public void close_action(){
-        Stage stage = (Stage) close_btn1.getScene().getWindow();
+    public void closeAction(ActionEvent e){
+        Stage stage = (Stage) closeBtn.getScene().getWindow();
         stage.close();
     }
 
-    public void nsfw_action(ActionEvent e){
-        if(nsfw_toggle_select){
-            nsfw_btn.setSelected(false);
-            nsfw_btn.setText("OFF");
-            nsfw_toggle_select = false;
+    public void nsfwBtnAction(ActionEvent e){
+        if(nsfwToggleSelect){
+            nsfwBtn.setSelected(false);
+            nsfwBtn.setText("OFF");
+            nsfwToggleSelect = false;
         } else {
-            nsfw_btn.setSelected(false);
-            nsfw_btn.setText("ON");
-            nsfw_toggle_select = true;
+            nsfwBtn.setSelected(false);
+            nsfwBtn.setText("ON");
+            nsfwToggleSelect = true;
         }
     }
     @FXML
     public void mouseExeitedQuickSettPane(MouseEvent event){
-        quick_sett_mouse_off.setVisible(true);
-        quick_sett_mouse_on.setVisible(false);
+        quickSettMouseOff.setVisible(true);
+        quickSettMouseOn.setVisible(false);
     }
     @FXML
     public void mouseEnterdQuickSettPane(MouseEvent event){
-        quick_sett_mouse_off.setVisible(false);
-        quick_sett_mouse_on.setVisible(true);
+        quickSettMouseOff.setVisible(false);
+        quickSettMouseOn.setVisible(true);
     }
     @FXML
-    public void  settings_clicked(){
-        set_pane_to("settings");
+    public void  settingsAction(){
+        setPaneTo("settings");
     }
-
-    /* Create function to get weather */
-
 
     /* This function simply switches between AnchorPanes to display to the user
 
@@ -101,35 +101,41 @@ public class Controller implements Initializable {
     * this function will need to be modified as we add more features to our project.
     * */
 
-    private void set_pane_to(String s){
+    private void setPaneTo(String s) {
 
-        quick_sett_mouse_on.setVisible(true);
-        quick_sett_mouse_off.setVisible(false);
+        quickSettMouseOn.setVisible(true);
+        quickSettMouseOff.setVisible(false);
 
         if(s.equalsIgnoreCase("image")){
-            img_pane.setVisible(true);
-            sett_pane.setVisible(false);
-            save_pane.setVisible(false);
+            imgPane.setVisible(true);
+            settingsPane.setVisible(false);
+            savePane.setVisible(false);
+            blankPane.setVisible(false);
         } else if (s.equalsIgnoreCase("settings")){
-            img_pane.setVisible(false);
-            sett_pane.setVisible(true);
-            save_pane.setVisible(false);
+            imgPane.setVisible(false);
+            settingsPane.setVisible(true);
+            savePane.setVisible(false);
+            blankPane.setVisible(false);
         } else if (s.equalsIgnoreCase("save")) {
-            img_pane.setVisible(false);
-            sett_pane.setVisible(false);
-            save_pane.setVisible(true);
+            imgPane.setVisible(false);
+            settingsPane.setVisible(false);
+            savePane.setVisible(true);
+            blankPane.setVisible(false);
         } else if (s.equalsIgnoreCase("minimize")) {
-            img_pane.setVisible(false);
-            sett_pane.setVisible(false);
-            save_pane.setVisible(false);
+            imgPane.setVisible(false);
+            settingsPane.setVisible(false);
+            savePane.setVisible(false);
+            blankPane.setVisible(false);
         } else if(s.equalsIgnoreCase("close")){
-            img_pane.setVisible(false);
-            sett_pane.setVisible(false);
-            save_pane.setVisible(false);
+            imgPane.setVisible(false);
+            settingsPane.setVisible(false);
+            savePane.setVisible(false);
+            blankPane.setVisible(false);
         } else {
-            img_pane.setVisible(false);
-            sett_pane.setVisible(false);
-            save_pane.setVisible(false);
+            imgPane.setVisible(false);
+            settingsPane.setVisible(false);
+            savePane.setVisible(false);
+            blankPane.setVisible(true);
         }
     }
     /*
@@ -143,9 +149,9 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        set_pane_to("");
-        quick_sett_mouse_off.setVisible(true);
-        quick_sett_mouse_on.setVisible(false);
+        setPaneTo("");
+        quickSettMouseOff.setVisible(true);
+        quickSettMouseOn.setVisible(false);
 
     }
 }
