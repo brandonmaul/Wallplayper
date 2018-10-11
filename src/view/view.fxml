@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="471.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<AnchorPane prefHeight="471.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="model.Model">
 
     <children>
         <AnchorPane fx:id="savePane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
@@ -41,7 +41,7 @@
                 </Label>
             </children></AnchorPane>
         <AnchorPane fx:id="blankPane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;" />
-        <AnchorPane fx:id="quickSettMouseOff" onMouseEntered="#mouseEnterdQuickSettPane" prefHeight="59.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+        <AnchorPane fx:id="quickSettMouseOff" onMouseEntered="#mouseEnteredQuickSettPane" prefHeight="59.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
             <children>
                 <ImageView fx:id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -64,7 +64,7 @@
                 <Button fx:id="saveBtn" ellipsisString="" layoutX="169.0" layoutY="15.0" mnemonicParsing="false" onAction="#saveAction" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
             </children>
         </AnchorPane>
-        <AnchorPane fx:id="quickSettMouseOn" onMouseExited="#mouseExeitedQuickSettPane" prefHeight="59.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
+        <AnchorPane fx:id="quickSettMouseOn" onMouseExited="#mouseExitedQuickSettPane" prefHeight="59.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
             <children>
                 <ImageView fx:id="img_btn" layoutX="35.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
