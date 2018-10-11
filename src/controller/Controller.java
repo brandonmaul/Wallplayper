@@ -1,5 +1,6 @@
 package controller;
 
+import data.ProcessData;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
@@ -13,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable {
+
+    ProcessData pd = new ProcessData();
 
     /** These are javaFX specific variables, in order to modify an xml element the xml needs to have
         an fx:id which we will reference in code here(Controller.java). In order to manipulate a desired xml element you need
