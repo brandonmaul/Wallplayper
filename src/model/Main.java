@@ -8,10 +8,6 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-import java.io.FileOutputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-
 public class Main extends Application {
 
     @Override
@@ -36,10 +32,11 @@ public class Main extends Application {
     public static void main(String[] args) {
         ProcessData pd = new ProcessData();
         try {
-            pd.startExe();
+            pd.enableAutoStart();
         } catch (Exception e) {
             e.printStackTrace();
         }
+
         launch(args);
     }
 
