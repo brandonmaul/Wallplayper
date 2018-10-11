@@ -1,5 +1,6 @@
 package model;
 
+import data.ProcessData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -7,11 +8,16 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("../view/view.fxml"));
+
+        Parent root = FXMLLoader.load(getClass().getResource("/view/view.fxml"));
         //stage.getIcons().add(new Image("/Resources/AppImages/ImpossibleTriangle.ico"));
         //stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root);
@@ -22,22 +28,21 @@ public class Main extends Application {
         //stage.setOpacity(0.5);
         stage.setScene(scene);
         stage.show();
-
     }
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        String filepath = "C:/AutoStart.exe";
+        ProcessData pd = new ProcessData();
         try {
-            Process p = Runtime.getRuntime().exec(filepath);
-            p.waitFor();
+            pd.startExe();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
         launch(args);
     }
+
+
 }
+
