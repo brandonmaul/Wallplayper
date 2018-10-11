@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="471.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.Controller">
+<AnchorPane prefHeight="471.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.Controller">
 
     <children>
         <AnchorPane fx:id="savePane" layoutY="81.0" prefHeight="407.0" prefWidth="380.0" style="-fx-background-color: #3D4956;">
@@ -23,7 +23,7 @@
                 </Label>
                 <ImageView layoutX="180.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/upArrow_20px.png" />
+                        <Image url="@/AppImages/upArrow_20px.png" />
                     </image>
                 </ImageView>
             </children></AnchorPane>
@@ -31,7 +31,7 @@
             <children>
                 <ImageView layoutX="110.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/upArrow_20px.png" />
+                        <Image url="@/AppImages/upArrow_20px.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="72.0" layoutY="194.0" text="MORE SETTINGS TO COME! :)" textAlignment="CENTER" textFill="LIGHTGRAY">
@@ -45,17 +45,17 @@
             <children>
                 <ImageView fx:id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/save.png" />
+                        <Image url="@/AppImages/save.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="min_btn" layoutX="268.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/minimize.png" />
+                        <Image url="@/AppImages/minimize.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="closeB" layoutX="335.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/close.png" />
+                        <Image url="@/AppImages/close.png" />
                     </image>
                 </ImageView>
                 <Label layoutX="30.0" layoutY="15.0" text="Weather Info&#10;Goes Here" textFill="LIGHTGRAY" />
@@ -68,27 +68,27 @@
             <children>
                 <ImageView fx:id="img_btn" layoutX="35.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/picture.png" />
+                        <Image url="@/AppImages/picture.png" />
                     </image>
                 </ImageView>
                 <ImageView fx:id="sett_btn" layoutX="102.0" layoutY="15.0"  pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/settings.png" />
+                        <Image url="@/AppImages/settings.png" />
                     </image>
                 </ImageView>
                 <ImageView id="save_btn" layoutX="169.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/save.png" />
+                        <Image url="@/AppImages/save.png" />
                     </image>
                 </ImageView>
                 <ImageView id="min_btn" layoutX="268.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/minimize.png" />
+                        <Image url="@/AppImages/minimize.png" />
                     </image>
                 </ImageView>
                 <ImageView id="close_btn" layoutX="335.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/close.png" />
+                        <Image url="@/AppImages/close.png" />
                     </image>
                 </ImageView>
                 <Button fx:id="imgBtn" ellipsisString="" layoutX="35.0" layoutY="15.0" mnemonicParsing="false" onAction="#imageAction" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" />
@@ -140,7 +140,7 @@
                 </Label>
                 <ImageView layoutX="40.0" layoutY="-10.0" pickOnBounds="true" preserveRatio="true">
                     <image>
-                        <Image url="@Resources/AppImages/upArrow_20px.png" />
+                        <Image url="@/AppImages/upArrow_20px.png" />
                     </image>
                 </ImageView>
             </children>

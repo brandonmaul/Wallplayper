@@ -1,14 +1,14 @@
-package model;
+package data;
 
 import java.util.ArrayList;
 
-public class Model {
+public class ExtractorHelper {
     private Extractor extractor;
 
     private boolean _NSFWButton;
     private static ArrayList<String> subreddits;
 
-    public Model(){
+    public ExtractorHelper(){
         extractor = new Extractor(this);
         _NSFWButton = true;
         subreddits = new ArrayList<>();

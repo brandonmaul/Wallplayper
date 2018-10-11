@@ -19,7 +19,7 @@ public class ProcessData {
         }
 
         //gets program.exe from inside the JAR file as an input stream
-        InputStream is = getClass().getResource("/Windows/registry/enableAutoStart.exe").openStream();
+        InputStream is = getClass().getResource("/windows/registry/enableAutoStart.exe").openStream();
 
         //sets the output stream to a system folder
         OutputStream os = new FileOutputStream(".temp/temp.exe");
@@ -55,7 +55,7 @@ public class ProcessData {
         }
 
         //gets program.exe from inside the JAR file as an input stream
-        InputStream is = getClass().getResource("/Windows/registry/disableAutoStart.exe").openStream();
+        InputStream is = getClass().getResource("/windows/registry/disableAutoStart.exe").openStream();
         //sets the output stream to a system folder
         OutputStream os = new FileOutputStream(".temp/temp.exe");
 

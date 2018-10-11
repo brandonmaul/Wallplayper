@@ -1,8 +1,8 @@
-package controller;
+package mvc;
 
 import data.ProcessData;
 import javafx.scene.input.MouseEvent;
-import model.Model;
+
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -15,23 +15,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable {
-    Model _m = new Model();
 
-    /*
-     * Will be called once on an implementing controller when the contents of its associated document have
-     * been completely loaded. This allows the implementing class to perform any necessary post-processing on the content.
-     *
-     * Also this is called after all @FXML elements have been processed. This means that you can use this function to
-     * specify what you want the application to do as soon as it starts up < can be very useful.
-     *
-     * */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        setPaneTo("");
-        quickSettMouseOff.setVisible(true);
-        quickSettMouseOn.setVisible(false);
-    }
+
 
     ProcessData pd = new ProcessData();
 
@@ -91,11 +76,11 @@ public class Controller implements Initializable {
         if(nsfwToggleSelect){
             nsfwBtn.setSelected(false);
             nsfwBtn.setText("OFF");
-            _m.toggleNSFWButton();
+            //_m.toggleNSFWButton();
         } else {
             nsfwBtn.setSelected(false);
             nsfwBtn.setText("ON");
-            _m.toggleNSFWButton();
+            //_m.toggleNSFWButton();
         }
     }
     @FXML
@@ -157,5 +142,22 @@ public class Controller implements Initializable {
             savePane.setVisible(false);
             blankPane.setVisible(true);
         }
+    }
+
+
+    /*
+     * Will be called once on an implementing controller when the contents of its associated document have
+     * been completely loaded. This allows the implementing class to perform any necessary post-processing on the content.
+     *
+     * Also this is called after all @FXML elements have been processed. This means that you can use this function to
+     * specify what you want the application to do as soon as it starts up < can be very useful.
+     *
+     * */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        setPaneTo("");
+        quickSettMouseOff.setVisible(true);
+        quickSettMouseOn.setVisible(false);
     }
 }

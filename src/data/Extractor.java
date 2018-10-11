@@ -1,4 +1,4 @@
-package model;
+package data;
 
 import java.io.*;
 import java.net.URL;
@@ -8,8 +8,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
+
+import java.io.IOException;
+
+
+
 
 /**
  * Parses through a json file on a certain subreddit, and grab direct links to images.
@@ -20,32 +23,33 @@ public class Extractor {
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/library/Application Support/Wallplayer/";
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
 
-    private Model _m;
+    private ExtractorHelper _m;
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks; // links to all images found
     private String finalLink;
 
-    public Extractor(Model m) {
+    public Extractor(ExtractorHelper m) {
         _m = m;
     }
 
     public void run(){
-        subreddits = Model.getSubreddits();
+        subreddits = ExtractorHelper.getSubreddits();
         imageLinks = new ArrayList<>();
-        finalLink = look();
+        //finalLink = look();
 
     }
 
     /*
      * For each subreddit specified, do a search
      */
-    public String look() {
+   /* public String look() {
         for(String subreddit : subreddits) {
             //System.out.println("Scanning: " + subreddit);
 
             // set the address
             String baseLink = "https://reddit.com/r/";
             String fullLink = baseLink + subreddit + "/hot.json";
+
 
             // now perform a scan for this subreddit
             String jsonString = readJSONFromURL(fullLink);
@@ -62,7 +66,7 @@ public class Extractor {
         //returns a single link from the array of pulled wallpapers, at random.
         return imageLinks.get(new Random().nextInt(imageLinks.size()));
 
-    }
+    }*/
 
 
     /**
