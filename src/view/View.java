@@ -1,6 +1,5 @@
-package model;
+package view;
 
-import data.ProcessData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -8,12 +7,12 @@ import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class View extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/view/view.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         //stage.getIcons().add(new Image("/Resources/AppImages/ImpossibleTriangle.ico"));
         //stage.initStyle(StageStyle.TRANSPARENT);
         Scene scene = new Scene(root);
@@ -26,20 +25,4 @@ public class Main extends Application {
         stage.show();
     }
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        ProcessData pd = new ProcessData();
-        try {
-            pd.enableAutoStart();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        launch(args);
-    }
-
-
 }
-
