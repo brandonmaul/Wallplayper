@@ -2,6 +2,7 @@ package driver;
 
 import data.ProcessData;
 import javafx.application.Application;
+import model.Model;
 import view.View;
 
 public class Driver {
@@ -17,6 +18,7 @@ public class Driver {
                 e.printStackTrace();
             }
         }
+
         Application.launch(View.class, args);
     }
 }
