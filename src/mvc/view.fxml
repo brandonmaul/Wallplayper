@@ -71,7 +71,7 @@
                         <Image url="@/AppImages/picture.png" />
                     </image>
                 </ImageView>
-                <ImageView fx:id="sett_btn" layoutX="102.0" layoutY="15.0"  pickOnBounds="true" preserveRatio="true">
+                <ImageView fx:id="sett_btn" layoutX="102.0" layoutY="15.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@/AppImages/settings.png" />
                     </image>
@@ -143,6 +143,7 @@
                         <Image url="@/AppImages/upArrow_20px.png" />
                     </image>
                 </ImageView>
+            <Button fx:id="updateNowBtn" alignment="CENTER" layoutX="146.0" layoutY="301.0" mnemonicParsing="false" onAction="#downloadNowAction" text="Update Now" />
             </children>
         </AnchorPane>
     </children>

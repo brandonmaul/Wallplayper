@@ -1,14 +1,20 @@
 package data;
 
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.json.JSONObject;
+import org.json.JSONArray;
+
+import javax.imageio.ImageIO;
 import java.util.Random;
-
-
 import java.io.IOException;
 
 
@@ -23,26 +29,32 @@ public class Extractor {
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/library/Application Support/Wallplayer/";
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
 
-    private ExtractorHelper _m;
+    private Data _m;
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks; // links to all images found
     private String finalLink;
 
-    public Extractor(ExtractorHelper m) {
+    public Extractor(Data m) {
         _m = m;
     }
 
     public void run(){
-        subreddits = ExtractorHelper.getSubreddits();
+        subreddits = Data.getSubreddits();
         imageLinks = new ArrayList<>();
-        //finalLink = look();
-
+        finalLink = look();
+        String[] parts = finalLink.split("/");
+        String lastpart = parts[parts.length-1];
+        try {
+            InputStream inputstream = new URL(finalLink).openStream();
+            Files.copy(inputstream, Paths.get("history/"+lastpart));
+        } catch (IOException e) {
+        }
     }
 
     /*
      * For each subreddit specified, do a search
      */
-   /* public String look() {
+    public String look() {
         for(String subreddit : subreddits) {
             //System.out.println("Scanning: " + subreddit);
 
@@ -66,7 +78,7 @@ public class Extractor {
         //returns a single link from the array of pulled wallpapers, at random.
         return imageLinks.get(new Random().nextInt(imageLinks.size()));
 
-    }*/
+    }
 
 
     /**
@@ -106,7 +118,7 @@ public class Extractor {
 
         return sb.toString();
     }
-
+    /*
     private File download(String fileUrl, String fileDest) throws IOException {
         URL url = new URL(fileUrl);
         BufferedInputStream input = new BufferedInputStream(url.openStream());
@@ -126,6 +138,6 @@ public class Extractor {
         fos.close();
 
         return file;
-    }
+    }*/
 
 }

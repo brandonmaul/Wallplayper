@@ -1,5 +1,6 @@
 package mvc;
 
+import data.Data;
 import data.ProcessData;
 import javafx.scene.input.MouseEvent;
 
@@ -16,9 +17,24 @@ import javafx.stage.Stage;
 
 public class Controller implements Initializable {
 
-
+    /*
+     * Will be called once on an implementing controller when the contents of its associated document have
+     * been completely loaded. This allows the implementing class to perform any necessary post-processing on the content.
+     *
+     * Also this is called after all @FXML elements have been processed. This means that you can use this function to
+     * specify what you want the application to do as soon as it starts up < can be very useful.
+     *
+     * */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        setPaneTo("");
+        quickSettMouseOff.setVisible(true);
+        quickSettMouseOn.setVisible(false);
+    }
 
     ProcessData pd = new ProcessData();
+    Data _data = new Data();
 
     /** These are javaFX specific variables, in order to modify an xml element the xml needs to have
      an fx:id which we will reference in code here(Controller.java). In order to manipulate a desired xml element you need
@@ -32,16 +48,16 @@ public class Controller implements Initializable {
     private Button closeBtn;
     @FXML
     private Button minBtn;
-
-
-
-    /* to change the NSFW toggle on and off*/
-    private boolean nsfwToggleSelect = true;
-
+    @FXML
+    private Button updateNowBtn;
 
     public void imageAction(ActionEvent e) {
         setPaneTo("image");
 
+    }
+
+    public void downloadNowAction(ActionEvent e){
+        _data.downloadNewImage();
     }
 
     public void settingsAction(ActionEvent e){
@@ -73,14 +89,14 @@ public class Controller implements Initializable {
     }
 
     public void nsfwBtnAction(ActionEvent e){
-        if(nsfwToggleSelect){
+        if(_data.getNSFWButton()){
             nsfwBtn.setSelected(false);
             nsfwBtn.setText("OFF");
-            //_m.toggleNSFWButton();
+            _data.toggleNSFWButton();
         } else {
             nsfwBtn.setSelected(false);
             nsfwBtn.setText("ON");
-            //_m.toggleNSFWButton();
+            _data.toggleNSFWButton();
         }
     }
     @FXML
@@ -142,22 +158,5 @@ public class Controller implements Initializable {
             savePane.setVisible(false);
             blankPane.setVisible(true);
         }
-    }
-
-
-    /*
-     * Will be called once on an implementing controller when the contents of its associated document have
-     * been completely loaded. This allows the implementing class to perform any necessary post-processing on the content.
-     *
-     * Also this is called after all @FXML elements have been processed. This means that you can use this function to
-     * specify what you want the application to do as soon as it starts up < can be very useful.
-     *
-     * */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-        setPaneTo("");
-        quickSettMouseOff.setVisible(true);
-        quickSettMouseOn.setVisible(false);
     }
 }
