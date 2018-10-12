@@ -29,24 +29,31 @@ public class Extractor {
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/library/Application Support/Wallplayer/";
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
 
-    private Data _m;
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks; // links to all images found
     private String finalLink;
 
-    public Extractor(Data m) {
-        _m = m;
+    public Extractor(){
+        this.load();
     }
 
-    public void run(){
+    public void load(){
         subreddits = Data.getSubreddits();
         imageLinks = new ArrayList<>();
-        finalLink = look();
+        imageLinks = look();
+    }
+
+    //Load must be called first before this command
+    public void get(){
+        //returns a single link from the array of pulled wallpapers, at random.
+        finalLink = imageLinks.get(new Random().nextInt(imageLinks.size()));
+
+        //saves image into history folder with unique filename
         String[] parts = finalLink.split("/");
-        String lastpart = parts[parts.length-1];
+        String lastPart = parts[parts.length-1];
         try {
             InputStream inputstream = new URL(finalLink).openStream();
-            Files.copy(inputstream, Paths.get("history/"+lastpart));
+            Files.copy(inputstream, Paths.get("history/"+lastPart));
         } catch (IOException e) {
         }
     }
@@ -54,13 +61,13 @@ public class Extractor {
     /*
      * For each subreddit specified, do a search
      */
-    public String look() {
+    public List<String> look() {
         for(String subreddit : subreddits) {
             //System.out.println("Scanning: " + subreddit);
 
             // set the address
-            String baseLink = "https://reddit.com/r/";
-            String fullLink = baseLink + subreddit + "/hot.json";
+            String firstPart = "https://reddit.com/r/";
+            String fullLink = firstPart + subreddit + "/hot.json";
 
 
             // now perform a scan for this subreddit
@@ -75,9 +82,7 @@ public class Extractor {
             }
         }
 
-        //returns a single link from the array of pulled wallpapers, at random.
-        return imageLinks.get(new Random().nextInt(imageLinks.size()));
-
+        return imageLinks;
     }
 
 
@@ -95,7 +100,7 @@ public class Extractor {
             uc = url.openConnection();
 
             Thread.sleep(2000); // to comply with reddit's rate-limiting rules
-            uc.setRequestProperty("User-Agent", "Wallplayer"); // ^ same here. Please dont change.
+            uc.setRequestProperty("User-Agent", "Wallplayper"); // ^ same here. Please dont change.
 
             if(uc != null)
                 uc.setReadTimeout(60 * 1000);
@@ -118,26 +123,4 @@ public class Extractor {
 
         return sb.toString();
     }
-    /*
-    private File download(String fileUrl, String fileDest) throws IOException {
-        URL url = new URL(fileUrl);
-        BufferedInputStream input = new BufferedInputStream(url.openStream());
-        ByteArrayOutputStream output = new ByteArrayOutputStream();
-
-        byte[] buf = new byte[1024];
-        int n = 0;
-        while(-1 != (n = input.read(buf)))
-            output.write(buf, 0, n);
-        output.close();
-        input.close();
-
-        byte[] response = output.toByteArray();
-        File file = new File(fileDest);
-        FileOutputStream fos = new FileOutputStream(file);
-        fos.write(response);
-        fos.close();
-
-        return file;
-    }*/
-
 }

@@ -10,17 +10,19 @@ public class Data {
     private static ArrayList<String> subreddits;
 
     public Data(){
-        extractor = new Extractor(this);
         _NSFWButton = true;
         subreddits = new ArrayList<>();
         //TEST CASE... Remove the next line.
         subreddits.add("wallpapers");
+        subreddits.add("cityporn");
+        subreddits.add("earthporn");
+        subreddits.add("foodporn");
 
-
+        extractor = new Extractor();
     }
 
     public void downloadNewImage(){
-        extractor.run();
+        extractor.get();
     }
 
     public static ArrayList<String> getSubreddits(){
