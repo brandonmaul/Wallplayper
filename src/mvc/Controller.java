@@ -41,7 +41,7 @@ public class Controller implements Initializable {
      to make a variable here and name it the **same name as you put in fx:id** make sure to add an '@FXML'  before the vvariable name,
      this lets the controller  java class to link that variable to a specific xml element **/
     @FXML
-    private AnchorPane imgPane, settingsPane, savePane , quickSettMouseOn, quickSettMouseOff, blankPane;
+    private AnchorPane imgPane, settingsPane, savePane , widgetsPane, quickSettMouseOn, quickSettMouseOff, blankPane;
     @FXML
     private ToggleButton nsfwBtn;
     @FXML
@@ -66,6 +66,10 @@ public class Controller implements Initializable {
 
     public void saveAction(ActionEvent e){
         setPaneTo("save");
+    }
+
+    public void widgetsAction(ActionEvent e){
+        setPaneTo("widgets");
     }
 
     /*
@@ -132,31 +136,43 @@ public class Controller implements Initializable {
             settingsPane.setVisible(false);
             savePane.setVisible(false);
             blankPane.setVisible(false);
+            widgetsPane.setVisible(false);
         } else if (s.equalsIgnoreCase("settings")){
             imgPane.setVisible(false);
             settingsPane.setVisible(true);
             savePane.setVisible(false);
             blankPane.setVisible(false);
+            widgetsPane.setVisible(false);
         } else if (s.equalsIgnoreCase("save")) {
             imgPane.setVisible(false);
             settingsPane.setVisible(false);
             savePane.setVisible(true);
             blankPane.setVisible(false);
+            widgetsPane.setVisible(false);
+        } else if (s.equalsIgnoreCase("widgets")) {
+            imgPane.setVisible(false);
+            settingsPane.setVisible(false);
+            savePane.setVisible(false);
+            blankPane.setVisible(false);
+            widgetsPane.setVisible(true);
         } else if (s.equalsIgnoreCase("minimize")) {
             imgPane.setVisible(false);
             settingsPane.setVisible(false);
             savePane.setVisible(false);
             blankPane.setVisible(false);
+            widgetsPane.setVisible(false);
         } else if(s.equalsIgnoreCase("close")){
             imgPane.setVisible(false);
             settingsPane.setVisible(false);
             savePane.setVisible(false);
             blankPane.setVisible(false);
+            widgetsPane.setVisible(false);
         } else {
             imgPane.setVisible(false);
             settingsPane.setVisible(false);
             savePane.setVisible(false);
             blankPane.setVisible(true);
+            widgetsPane.setVisible(false);
         }
     }
 }
