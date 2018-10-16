@@ -17,7 +17,22 @@
     <children>
       <AnchorPane fx:id="widgetsPane" layoutY="81.0" prefHeight="407.0" prefWidth="425.0" style="-fx-background-color: #3D4956;">
          <children>
-            <Label layoutX="150.0" layoutY="184.0" text="WIDGETS&#10;COMMING SOON! :)" textAlignment="CENTER" textFill="LIGHTGRAY">
+            <Label layoutX="50.0" layoutY="50.0" text="Word of the Day&#10;" textAlignment="CENTER" textFill="LIGHTGRAY">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="85.0" text="(Coming Soon)" textAlignment="CENTER" textFill="LIGHTGRAY">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="50.0" layoutY="150.0" text="Weather" textAlignment="CENTER" textFill="LIGHTGRAY">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label layoutX="75.0" layoutY="185.0" text="(Coming Soon)" textAlignment="CENTER" textFill="LIGHTGRAY">
                <font>
                   <Font size="16.0" />
                </font>
