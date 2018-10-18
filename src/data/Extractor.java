@@ -1,12 +1,11 @@
 package data;
 
-import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,7 @@ public class Extractor {
 
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks; // links to all images found
-    private String finalLink;
+
 
     public Extractor(){
         this.load();
@@ -44,18 +43,24 @@ public class Extractor {
     }
 
     //Load must be called first before this command
-    public void get(){
+    public File get() {
         //returns a single link from the array of pulled wallpapers, at random.
-        finalLink = imageLinks.get(new Random().nextInt(imageLinks.size()));
+        String imageURL = imageLinks.remove(new Random().nextInt(imageLinks.size()));
+        String filename = imageURL.substring(imageURL.lastIndexOf("/"));
+        String filetype = filename.substring(filename.lastIndexOf("."));
 
-        //saves image into history folder with unique filename
-        String[] parts = finalLink.split("/");
-        String lastPart = parts[parts.length-1];
+        File file = null;
+
         try {
-            InputStream inputstream = new URL(finalLink).openStream();
-            Files.copy(inputstream, Paths.get("history/"+lastPart));
-        } catch (IOException e) {
+            URL url = new URL(imageURL);
+            BufferedImage img = ImageIO.read(url);
+            file = new File("out"+filename);
+            file.deleteOnExit();
+            //ImageIO.write(img, filetype, file);
+            Files.copy(url.openStream(), file.toPath());
+        } catch (Exception e) {
         }
+        return file;
     }
 
     /*

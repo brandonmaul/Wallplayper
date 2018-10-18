@@ -1,10 +1,11 @@
 package data;
 
 import java.util.ArrayList;
-
+import java.io.File;
 public class Data {
 
-    private Extractor extractor;
+    private Extractor _extractor;
+    private WallpaperUtility _wallpaperUtil;
 
     private boolean _NSFWButton;
     private static ArrayList<String> subreddits;
@@ -18,11 +19,13 @@ public class Data {
         subreddits.add("earthporn");
         subreddits.add("foodporn");
 
-        extractor = new Extractor();
+        _extractor = new Extractor();
+        _wallpaperUtil = new WallpaperUtility();
     }
 
     public void downloadNewImage(){
-        extractor.get();
+        File file = _extractor.get();
+        _wallpaperUtil.setWallpaper(file);
     }
 
     public static ArrayList<String> getSubreddits(){
