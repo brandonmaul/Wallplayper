@@ -12,7 +12,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane prefHeight="471.0" prefWidth="380.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="mvc.Controller">
     <children>
       <AnchorPane fx:id="widgetsPane" layoutY="81.0" prefHeight="407.0" prefWidth="425.0" style="-fx-background-color: #3D4956;">
@@ -165,7 +164,7 @@
                 </Label>
                 <Label layoutX="45.0" layoutY="274.0" text="10min" textFill="LIGHTGRAY" />
                 <Label layoutX="343.0" layoutY="274.0" text="24Hr" textFill="LIGHTGRAY" />
-                <Button layoutX="231.0" layoutY="340.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #eda678; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Save">
+                <Button layoutX="231.0" layoutY="340.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="137.0" style="-fx-background-color: #eda678; -fx-border-radius: 5em; -fx-background-radius: 5em;" text="Apply">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
@@ -183,7 +182,7 @@
                         <Image url="@/AppImages/upArrow_20px.png" />
                     </image>
                 </ImageView>
-            <Button fx:id="updateNowBtn" alignment="CENTER" layoutX="146.0" layoutY="301.0" mnemonicParsing="false" onAction="#downloadNowAction" text="Update Now" />
+            <Button fx:id="updateNowBtn" alignment="CENTER" layoutX="157.0" layoutY="301.0" mnemonicParsing="false" onAction="#downloadNowAction" text="Update Now" />
             </children>
         </AnchorPane>
         <AnchorPane fx:id="quickSettMouseOn" onMouseExited="#mouseExitedQuickSettPane" prefHeight="59.0" prefWidth="425.0" style="-fx-background-color: #3D4956;">
