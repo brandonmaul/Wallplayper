@@ -9,6 +9,6 @@ public class changewallpaper {
         boolean SystemParametersInfo (int one, int two, String s ,int three);
     }
     public static void main(String[] args) {
-        User32.INSTANCE.SystemParametersInfo(0x0014, 0, "C:\\Users\\Jasmeet Kaur Chawla\\IdeaProjects\\CSE442-WallpaperApp\\out\\production\\CSE-442-Project\\Resources\\TheMostInterestingHertzInTheWorld.png" , 1);
+        User32.INSTANCE.SystemParametersInfo(0x0014, 0, "C:\\Users\\Jasmeet Kaur Chawla\\IdeaProjects\\CSE442-WallpaperApp\\out\\production\\CSE-442-Project\\Resources\\Wallpapers\\siyan-ren-14405-unsplash.jpg" , 1);
     }
 }
