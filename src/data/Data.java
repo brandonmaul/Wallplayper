@@ -21,7 +21,6 @@ public class Data {
     }
 
     public void downloadNewImage(){
-        System.out.print("Winning");
         File file = _extractor.get();
         _wallpaperUtil.setWallpaper(file);
     }

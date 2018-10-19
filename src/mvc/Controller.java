@@ -29,8 +29,6 @@ public class Controller implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         setPaneTo("image");
-        quickSettMouseOff.setVisible(true);
-        quickSettMouseOn.setVisible(false);
     }
 
     ProcessData pd = new ProcessData();
