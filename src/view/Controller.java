@@ -38,13 +38,14 @@ public class Controller implements Initializable {
     }
 
     public void nsfwButtonAction(ActionEvent e){
-        if(_model.getNSFWButton()){
+        if(!_model.getNSFWBoolean()){
             nsfwButton.setText("Disabled");
             _model.toggleNSFWBoolean();
         } else {
             nsfwButton.setText("Enabled");
             _model.toggleNSFWBoolean();
         }
+        System.out.println(_model.getNSFWBoolean());
     }
 
     private void configureTimeSlider(){

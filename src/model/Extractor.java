@@ -29,9 +29,11 @@ public class Extractor {
 
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks = new ArrayList<>(); // links to all images found
+    private Model _m;
 
 
-    public Extractor(){
+    public Extractor(Model m){
+        m = _m;
         this.load();
     }
 
@@ -78,9 +80,7 @@ public class Extractor {
 
     public List<String> look() {
         for(String subreddit : subreddits) {
-            //System.out.println("Scanning: " + subreddit);
 
-            // set the address
             String firstPart = "https://reddit.com/r/";
             String fullLink = firstPart + subreddit + "/hot.json";
 
@@ -88,12 +88,18 @@ public class Extractor {
             // now perform a scan for this subreddit
             String jsonString = readJSONFromURL(fullLink);
             JSONObject jason = new JSONObject(jsonString);
-            JSONArray children = jason.getJSONObject("data").getJSONArray("children");
+            JSONArray allPosts = jason.getJSONObject("data").getJSONArray("children");
 
-            for(int i = 0; i < children.length(); i++) {
-                String link = (children.getJSONObject(i).getJSONObject("data").getString("url"));
-                if(link.contains(".jpg") | link.contains(".jpeg") | link.contains(".png"))
-                    imageLinks.add(link);
+            for(int i = 0; i < allPosts.length(); i++) {
+                JSONObject post = allPosts.getJSONObject(i).getJSONObject("data");
+                boolean isNSFW = post.getBoolean("over_18");
+                String link = post.getString("url");
+                if (link.contains(".jpg") | link.contains(".jpeg") | link.contains(".png")){
+                    if (isNSFW == true && _m.getNSFWBoolean() == true){
+                    }else{
+                        imageLinks.add(link);
+                    }
+                }
             }
         }
 
