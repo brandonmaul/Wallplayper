@@ -1,4 +1,4 @@
-package data;
+package model;
 
 import java.awt.image.BufferedImage;
 import java.io.*;
@@ -36,7 +36,7 @@ public class Extractor {
     }
 
     public void load(){
-        subreddits = Data.getSubreddits();
+        subreddits = Model.getSubreddits();
         imageLinks = new ArrayList<>();
         imageLinks = look();
     }

@@ -1,6 +1,6 @@
-package  mvc;
+package view;
 
-import data.ProcessData;
+import model.ProcessData;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
