@@ -229,12 +229,12 @@
                </cursor></Button>
             <Button fx:id="widgetsBtn" ellipsisString="" layoutX="235.0" layoutY="15.0" mnemonicParsing="false" onAction="#widgetsAction" prefHeight="32.0" prefWidth="32.0" style="-fx-border-color: transparent; -fx-border-width: 0; -fx-background-radius: 0; -fx-background-color: transparent;" text="Widgets">
                <graphic>
-                  <ImageView id="save_btn" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="widgets_btn" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@/mvc/AppImages/Star2.png" />
                      </image>
                      <effect>
-                        <ColorAdjust brightness="0.9" />
+                        <ColorAdjust brightness="0.8" />
                      </effect>
                   </ImageView>
                </graphic>
