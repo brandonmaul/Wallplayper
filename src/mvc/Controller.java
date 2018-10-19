@@ -28,7 +28,7 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        setPaneTo("");
+        setPaneTo("image");
         quickSettMouseOff.setVisible(true);
         quickSettMouseOn.setVisible(false);
     }

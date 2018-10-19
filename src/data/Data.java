@@ -15,15 +15,13 @@ public class Data {
         subreddits = new ArrayList<>();
         //TEST CASE... Remove the next line.
         subreddits.add("wallpapers");
-        subreddits.add("cityporn");
-        subreddits.add("earthporn");
-        subreddits.add("foodporn");
 
         _extractor = new Extractor();
         _wallpaperUtil = new WallpaperUtility();
     }
 
     public void downloadNewImage(){
+        System.out.print("Winning");
         File file = _extractor.get();
         _wallpaperUtil.setWallpaper(file);
     }

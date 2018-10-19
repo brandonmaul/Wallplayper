@@ -14,7 +14,6 @@ import org.json.JSONArray;
 
 import javax.imageio.ImageIO;
 import java.util.Random;
-import java.io.IOException;
 
 
 
@@ -24,8 +23,8 @@ import java.io.IOException;
  */
 public class Extractor {
 
-    public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "/Wallplayer/";
-    public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/library/Application Support/Wallplayer/";
+    public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
+    public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
 
     private List<String> subreddits; // subreddits to scan through
@@ -46,17 +45,31 @@ public class Extractor {
     public File get() {
         //returns a single link from the array of pulled wallpapers, at random.
         String imageURL = imageLinks.remove(new Random().nextInt(imageLinks.size()));
-        String filename = imageURL.substring(imageURL.lastIndexOf("/"));
-        String filetype = filename.substring(filename.lastIndexOf("."));
-
+        String filename = imageURL.substring(imageURL.lastIndexOf("/")).substring(1);
         File file = null;
+
 
         try {
             URL url = new URL(imageURL);
             BufferedImage img = ImageIO.read(url);
-            file = new File("out"+filename);
+
+            if (System.getProperty("os.name").startsWith("Windows")) {
+                File dir = new File(DOWNLOAD_FOLDER_WINDOWS);
+                if(!dir.exists()){
+                    dir.mkdir();
+                }
+                filename = filename.substring(0, filename.indexOf("."));
+                file = new File(DOWNLOAD_FOLDER_WINDOWS+filename+".bmp");
+
+            }else if (System.getProperty("os.name").startsWith("Mac")){
+                File dir = new File(DOWNLOAD_FOLDER_MAC);
+                if(!dir.exists()){
+                    dir.mkdir();
+                }
+                file = new File(DOWNLOAD_FOLDER_MAC+filename);
+            }
+
             file.deleteOnExit();
-            //ImageIO.write(img, filetype, file);
             Files.copy(url.openStream(), file.toPath());
         } catch (Exception e) {
         }

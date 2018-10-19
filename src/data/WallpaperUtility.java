@@ -1,6 +1,7 @@
 package data;
-import java.util.*;
+
 import java.io.File;
+
 
 public class WallpaperUtility {
 
@@ -11,8 +12,14 @@ public class WallpaperUtility {
     }
 
     public void setWallpaper(File file) {
-
         if (_os.startsWith("Windows")) { //WINDOWS
+            String command1 = "powershell.exe Set-ItemProperty -path 'HKCU:\\Control Panel\\Desktop\\' -name wallpaper -value \"" + file.getAbsolutePath() + "\"";
+            String command2 = "powershell.exe rundll32.exe user32.dll, UpdatePerUserSystemParameters, 1, True";
+            try{
+                Runtime.getRuntime().exec(command1);
+                Runtime.getRuntime().exec(command2);
+            }catch (Exception e){
+            }
 
         } else if (_os.startsWith("Mac")) { //MAC
 
@@ -32,7 +39,5 @@ public class WallpaperUtility {
         } else {
             System.out.println("OS Not supported/found");
         }
-
-
     }
 }
