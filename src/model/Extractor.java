@@ -28,7 +28,7 @@ public class Extractor {
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
 
     private List<String> subreddits; // subreddits to scan through
-    private List<String> imageLinks; // links to all images found
+    private List<String> imageLinks = new ArrayList<>(); // links to all images found
 
 
     public Extractor(){
@@ -37,7 +37,7 @@ public class Extractor {
 
     public void load(){
         subreddits = Model.getSubreddits();
-        imageLinks = new ArrayList<>();
+        imageLinks.clear();
         imageLinks = look();
     }
 
@@ -76,9 +76,6 @@ public class Extractor {
         return file;
     }
 
-    /*
-     * For each subreddit specified, do a search
-     */
     public List<String> look() {
         for(String subreddit : subreddits) {
             //System.out.println("Scanning: " + subreddit);
@@ -104,9 +101,6 @@ public class Extractor {
     }
 
 
-    /**
-     * Reads the json file from the given url
-     */
     private String readJSONFromURL(String urlString) {
         //System.out.println("Reading JSON from " + urlString);
         StringBuilder sb = new StringBuilder();

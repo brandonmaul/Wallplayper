@@ -30,13 +30,13 @@
                            </font>
                         </Text>
                         <ToggleButton fx:id="nsfwButton" layoutX="176.0" layoutY="48.0" mnemonicParsing="false" onAction="#nsfwButtonAction" prefHeight="27.0" prefWidth="79.0" text="Enabled" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="48.0" />
-                        <Slider fx:id="timeSlider" layoutX="20.0" layoutY="211.0" max="1.0" prefHeight="16.0" prefWidth="286.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+                        <Slider fx:id="timeSlider" blockIncrement="0.0" layoutX="20.0" layoutY="211.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="16.0" prefWidth="286.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
                         <Text layoutX="20.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Wallpaper Every...">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <Button layoutX="121.0" layoutY="249.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" />
+                        <Button layoutX="121.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" />
                         <Separator layoutX="14.0" layoutY="97.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.5" />
                      </children>
                   </AnchorPane>

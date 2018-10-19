@@ -8,13 +8,14 @@ public class Model {
     private WallpaperUtility _wallpaperUtil;
 
     private boolean _NSFWEnabled;
-    private static ArrayList<String> subreddits;
+    private double _refreshRate; //hours?
+    private static ArrayList<String> _subreddits;
 
     public Model(){
         _NSFWEnabled = true;
-        subreddits = new ArrayList<>();
+        _subreddits = new ArrayList<>();
         //TEST CASE... Remove the next line.
-        subreddits.add("wallpapers");
+        _subreddits.add("wallpapers");
 
         _extractor = new Extractor();
         _wallpaperUtil = new WallpaperUtility();
@@ -25,8 +26,12 @@ public class Model {
         _wallpaperUtil.setWallpaper(file);
     }
 
+    public void setRefreshRate(double d){
+        _refreshRate = d;
+    }
+
     public static ArrayList<String> getSubreddits(){
-        return subreddits;
+        return _subreddits;
     }
 
     public boolean getNSFWButton(){
