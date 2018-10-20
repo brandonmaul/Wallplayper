@@ -45,7 +45,7 @@ public class Controller implements Initializable {
         dialog.setHeaderText(null);
         dialog.setGraphic(null);
         dialog.setTitle("Add Subreddit");
-        dialog.setContentText("New Subreddit:");
+        dialog.setContentText("www.reddit.com/r/");
 
         Optional<String> result = dialog.showAndWait();
         if(result.isPresent()) {
