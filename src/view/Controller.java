@@ -1,10 +1,11 @@
 package view;
 
-import javafx.scene.control.Slider;
+import javafx.scene.control.*;
 import model.Model;
 
 
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
@@ -12,7 +13,6 @@ import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.util.StringConverter;
-import javafx.scene.control.ToggleButton;
 
 public class Controller implements Initializable {
 
@@ -26,11 +26,32 @@ public class Controller implements Initializable {
     private ToggleButton nsfwButton;
     @FXML
     private Slider timeSlider;
+    @FXML
+    private ListView<String> subredditLV;
+    @FXML
+    private Button addSubredditButton;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         _model = new Model();
+        subredditLV.setItems(_model.getSubreddits());
+        subredditLV.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
         configureTimeSlider();
+    }
+
+    public void addSubredditButtonAction(){
+        TextInputDialog dialog = new TextInputDialog("wallpapers");
+        dialog.setHeaderText(null);
+        dialog.setGraphic(null);
+        dialog.setTitle("Add Subreddit");
+        dialog.setContentText("New Subreddit:");
+
+        Optional<String> result = dialog.showAndWait();
+        if(result.isPresent()) {
+            _model.addSub(result.get());
+            subredditLV.refresh();
+        }
     }
 
     public void updateNowButtonAction(ActionEvent e){

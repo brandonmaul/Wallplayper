@@ -4,8 +4,10 @@
 <?import javafx.scene.control.Accordion?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
+<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
@@ -49,17 +51,27 @@
                         <Accordion prefHeight="323.0" prefWidth="334.0">
                           <panes>
                             <TitledPane animated="false" text="Reddit">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <ToolBar prefHeight="40.0" prefWidth="335.0">
-                                            <items>
-                                              <Button mnemonicParsing="false" text="Add New Subreddit" />
-                                            </items>
-                                          </ToolBar>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
+                                 <content>
+                                    <SplitPane dividerPositions="0.1991701244813278" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                                      <items>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                             <children>
+                                                <ToolBar prefHeight="44.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                  <items>
+                                                    <Button fx:id="addSubredditButton" mnemonicParsing="false" onAction="#addSubredditButtonAction" text="Add Subreddit" />
+                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                  </items>
+                                                </ToolBar>
+                                             </children>
+                                          </AnchorPane>
+                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="332.0">
+                                             <children>
+                                                <ListView fx:id="subredditLV" prefHeight="189.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                             </children>
+                                          </AnchorPane>
+                                      </items>
+                                    </SplitPane>
+                                 </content>
                             </TitledPane>
                             <TitledPane animated="false" text="Flickr">
                               <content>

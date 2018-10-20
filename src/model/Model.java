@@ -1,5 +1,8 @@
 package model;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
 import java.util.ArrayList;
 import java.io.File;
 public class Model {
@@ -9,12 +12,10 @@ public class Model {
 
     private boolean _NSFWAllowed = false;
     private double _refreshRate; //hours?
-    private static ArrayList<String> _subreddits;
+    private static ObservableList<String> _subreddits;
 
     public Model(){
-        _subreddits = new ArrayList<>();
-        //TEST CASE... Remove the next line.
-        _subreddits.add("wallpapers");
+        _subreddits = FXCollections.observableArrayList();
 
         _extractor = new Extractor(this);
         _wallpaperUtil = new WallpaperUtility();
@@ -29,7 +30,10 @@ public class Model {
         _refreshRate = d;
     }
 
-    public static ArrayList<String> getSubreddits(){
+    public void addSub(String s){
+        _subreddits.add(s);
+    }
+    public static ObservableList<String> getSubreddits(){
         return _subreddits;
     }
 

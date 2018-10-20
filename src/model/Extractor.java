@@ -39,12 +39,14 @@ public class Extractor {
 
     public void load(){
         subreddits = Model.getSubreddits();
-        imageLinks.clear();
         imageLinks = look();
     }
 
     //Load must be called first before this command
     public File get() {
+        if(imageLinks.isEmpty()){
+            load();
+        }
         //returns a single link from the array of pulled wallpapers, at random.
         String imageURL = imageLinks.remove(new Random().nextInt(imageLinks.size()));
         String filename = imageURL.substring(imageURL.lastIndexOf("/")).substring(1);
