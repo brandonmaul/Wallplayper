@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.scene.control.Alert;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
@@ -45,6 +46,11 @@ public class Extractor {
     public File get() {
         if(imageLinks.isEmpty()){
             load();
+            if(imageLinks.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "No images found on those subreddits.");
+                alert.showAndWait();
+                return null;
+            }
         }
         //returns a single link from the array of pulled wallpapers, at random.
         String imageURL = imageLinks.remove(new Random().nextInt(imageLinks.size()));

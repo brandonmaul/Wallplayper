@@ -25,7 +25,9 @@ public class Model {
 
     public void setNewWallpaper(){
         File file = _extractor.get();
-        _wallpaperUtil.setWallpaper(file);
+        if(file != null){
+            _wallpaperUtil.setWallpaper(file);
+        }
     }
 
     public void setRefreshRate(double d){
