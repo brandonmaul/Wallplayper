@@ -58,15 +58,15 @@
                                              <children>
                                                 <ToolBar prefHeight="44.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                   <items>
-                                                    <Button fx:id="addSubredditButton" mnemonicParsing="false" onAction="#addSubredditButtonAction" text="Add Subreddit" />
-                                                      <Button mnemonicParsing="false" text="Delete" />
+                                                    <Button fx:id="addSubButton" mnemonicParsing="false" onAction="#addSubButtonAction" text="Add Subreddit" />
+                                                      <Button fx:id="deleteSubButton" disable="true" mnemonicParsing="false" onAction="#deleteSubButtonAction" text="Delete" />
                                                   </items>
                                                 </ToolBar>
                                              </children>
                                           </AnchorPane>
                                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="332.0">
                                              <children>
-                                                <ListView fx:id="subredditLV" prefHeight="189.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                <ListView fx:id="subredditLV" editable="true" prefHeight="189.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
                                              </children>
                                           </AnchorPane>
                                       </items>

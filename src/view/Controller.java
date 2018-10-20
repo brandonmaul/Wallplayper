@@ -8,7 +8,6 @@ import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -29,18 +28,32 @@ public class Controller implements Initializable {
     @FXML
     private ListView<String> subredditLV;
     @FXML
-    private Button addSubredditButton;
+    private Button deleteSubButton;
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         _model = new Model();
-        subredditLV.setItems(_model.getSubreddits());
-        subredditLV.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
+        configureSubredditLV();
         configureTimeSlider();
     }
 
-    public void addSubredditButtonAction(){
+    private void configureSubredditLV() {
+        subredditLV.setItems(_model.getSubreddits());
+        subredditLV.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
+        subredditLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                if(newValue != null){
+                    deleteSubButton.setDisable(false);
+                }else{
+                    deleteSubButton.setDisable(true);
+                }
+            }
+        });
+    }
+
+    public void addSubButtonAction(){
         TextInputDialog dialog = new TextInputDialog("wallpapers");
         dialog.setHeaderText(null);
         dialog.setGraphic(null);
@@ -54,11 +67,15 @@ public class Controller implements Initializable {
         }
     }
 
-    public void updateNowButtonAction(ActionEvent e){
+    public void deleteSubButtonAction(){
+        subredditLV.getItems().remove(subredditLV.getSelectionModel().getSelectedIndex());
+    }
+
+    public void updateNowButtonAction(){
         _model.setNewWallpaper();
     }
 
-    public void nsfwButtonAction(ActionEvent e){
+    public void nsfwButtonAction(){
         if(!_model.getNSFWBoolean()){
             nsfwButton.setText("Disabled");
             _model.toggleNSFWBoolean();
@@ -66,7 +83,6 @@ public class Controller implements Initializable {
             nsfwButton.setText("Enabled");
             _model.toggleNSFWBoolean();
         }
-        System.out.println(_model.getNSFWBoolean());
     }
 
     private void configureTimeSlider(){

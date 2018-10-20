@@ -3,7 +3,6 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.util.ArrayList;
 import java.io.File;
 public class Model {
 
@@ -11,11 +10,12 @@ public class Model {
     private WallpaperUtility _wallpaperUtil;
 
     private boolean _NSFWAllowed = false;
-    private double _refreshRate; //hours?
+    private double _refreshRate; //Double for storing the refresh time of the program (double will be from 0.0 - 3.0)
     private static ObservableList<String> _subreddits;
 
     public Model(){
         _subreddits = FXCollections.observableArrayList();
+        _subreddits.add("wallpapers");
 
         _extractor = new Extractor(this);
         _wallpaperUtil = new WallpaperUtility();
