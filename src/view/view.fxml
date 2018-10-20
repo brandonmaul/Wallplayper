@@ -18,9 +18,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="335.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
    <center>
-      <TabPane prefHeight="400.0" prefWidth="346.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
+      <TabPane prefHeight="400.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
           <Tab text="Settings">
                <content>
@@ -32,14 +32,14 @@
                            </font>
                         </Text>
                         <ToggleButton fx:id="nsfwButton" layoutX="176.0" layoutY="48.0" mnemonicParsing="false" onAction="#nsfwButtonAction" prefHeight="27.0" prefWidth="79.0" text="Enabled" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="48.0" />
-                        <Slider fx:id="timeSlider" blockIncrement="0.0" layoutX="20.0" layoutY="211.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="16.0" prefWidth="286.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.bottomAnchor="71.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" />
-                        <Text layoutX="20.0" layoutY="199.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Wallpaper Every...">
+                        <Slider fx:id="timeSlider" blockIncrement="0.0" layoutX="20.0" layoutY="169.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="16.0" prefWidth="286.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="169.0" />
+                        <Text layoutX="20.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Change Wallpaper Every..." AnchorPane.bottomAnchor="161.8359375" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="193.10791015625" AnchorPane.topAnchor="141.498046875">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Text>
-                        <Button layoutX="121.0" layoutY="260.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" />
-                        <Separator layoutX="14.0" layoutY="97.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="157.5" />
+                        <Button layoutX="153.0" layoutY="228.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" AnchorPane.bottomAnchor="66.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="228.0" />
+                        <Separator layoutY="114.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.bottomAnchor="202.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="114.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -48,7 +48,7 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Accordion prefHeight="323.0" prefWidth="334.0">
+                        <Accordion prefHeight="320.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <panes>
                             <TitledPane animated="false" text="Reddit">
                                  <content>

@@ -1,6 +1,5 @@
 package model;
 
-import java.awt.image.BufferedImage;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -12,7 +11,6 @@ import java.util.List;
 import org.json.JSONObject;
 import org.json.JSONArray;
 
-import javax.imageio.ImageIO;
 import java.util.Random;
 
 
@@ -33,13 +31,14 @@ public class Extractor {
 
 
     public Extractor(Model m){
-        m = _m;
+        _m = m;
         this.load();
     }
 
     public void load(){
         subreddits = Model.getSubreddits();
-        imageLinks = look();
+        imageLinks.clear();
+        imageLinks = getImageLinks();
     }
 
     //Load must be called first before this command
@@ -55,7 +54,6 @@ public class Extractor {
 
         try {
             URL url = new URL(imageURL);
-            BufferedImage img = ImageIO.read(url);
 
             if (System.getProperty("os.name").startsWith("Windows")) {
                 File dir = new File(DOWNLOAD_FOLDER_WINDOWS);
@@ -80,7 +78,7 @@ public class Extractor {
         return file;
     }
 
-    public List<String> look() {
+    public List<String> getImageLinks() {
         for(String subreddit : subreddits) {
 
             String firstPart = "https://reddit.com/r/";
@@ -97,7 +95,8 @@ public class Extractor {
                 boolean isNSFW = post.getBoolean("over_18");
                 String link = post.getString("url");
                 if (link.contains(".jpg") | link.contains(".jpeg") | link.contains(".png")){
-                    if (isNSFW == true && _m.getNSFWBoolean() == true){
+
+                    if (isNSFW == true && _m.isNSFWAllowed() == false){
                     }else{
                         imageLinks.add(link);
                     }

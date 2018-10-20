@@ -62,26 +62,33 @@ public class Controller implements Initializable {
 
         Optional<String> result = dialog.showAndWait();
         if(result.isPresent()) {
-            _model.addSub(result.get());
+            subredditLV.getItems().add(result.get());
             subredditLV.refresh();
+            _model.setExtractorNeedsReloading(true);
         }
     }
 
     public void deleteSubButtonAction(){
         subredditLV.getItems().remove(subredditLV.getSelectionModel().getSelectedIndex());
+        _model.setExtractorNeedsReloading(true);
     }
 
     public void updateNowButtonAction(){
+        if(_model.getExtractorReloadBoolean()){
+            _model.reloadSubs();
+        }
         _model.setNewWallpaper();
     }
 
     public void nsfwButtonAction(){
-        if(!_model.getNSFWBoolean()){
+        if(!_model.isNSFWAllowed()){
             nsfwButton.setText("Disabled");
             _model.toggleNSFWBoolean();
+            _model.setExtractorNeedsReloading(true);
         } else {
             nsfwButton.setText("Enabled");
             _model.toggleNSFWBoolean();
+            _model.setExtractorNeedsReloading(true);
         }
     }
 
