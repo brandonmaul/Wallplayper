@@ -7,7 +7,6 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
-<?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TitledPane?>
@@ -15,6 +14,7 @@
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
@@ -52,25 +52,17 @@
                           <panes>
                             <TitledPane animated="false" text="Reddit">
                                  <content>
-                                    <SplitPane dividerPositions="0.1991701244813278" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
-                                      <items>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
-                                             <children>
-                                                <ToolBar prefHeight="44.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                  <items>
-                                                    <Button fx:id="addSubButton" mnemonicParsing="false" onAction="#addSubButtonAction" text="Add Subreddit" />
-                                                      <Button fx:id="deleteSubButton" disable="true" mnemonicParsing="false" onAction="#deleteSubButtonAction" text="Delete" />
-                                                  </items>
-                                                </ToolBar>
-                                             </children>
-                                          </AnchorPane>
-                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="332.0">
-                                             <children>
-                                                <ListView fx:id="subredditLV" editable="true" prefHeight="189.0" prefWidth="332.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
-                                             </children>
-                                          </AnchorPane>
-                                      </items>
-                                    </SplitPane>
+                                    <VBox prefHeight="200.0" prefWidth="100.0">
+                                       <children>
+                                          <ToolBar prefHeight="0.0" prefWidth="312.0">
+                                            <items>
+                                              <Button fx:id="addSubButton" mnemonicParsing="false" onAction="#addSubButtonAction" text="Add Subreddit" />
+                                                <Button fx:id="deleteSubButton" disable="true" mnemonicParsing="false" onAction="#deleteSubButtonAction" text="Delete" />
+                                            </items>
+                                          </ToolBar>
+                                          <ListView fx:id="subredditLV" editable="true" prefHeight="189.0" prefWidth="332.0" />
+                                       </children>
+                                    </VBox>
                                  </content>
                             </TitledPane>
                             <TitledPane animated="false" text="Flickr">
