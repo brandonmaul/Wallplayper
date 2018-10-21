@@ -9,6 +9,8 @@ import com.sun.jna.win32.W32APIOptions;
 
 
 public class WallpaperUtility {
+    private static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
+
 
     private String _os;
 
@@ -17,7 +19,7 @@ public class WallpaperUtility {
     }
 
     public static String getLatestFilefromDir(String dirPath){
-        File dir = new File("C:\\Users\\Jasmeet Kaur Chawla\\AppData\\Roaming\\Wallplayper");
+        File dir = new File(DOWNLOAD_FOLDER_WINDOWS);
         File[] files = dir.listFiles();
         if (files == null || files.length == 0) {
             return null;
@@ -43,8 +45,7 @@ public class WallpaperUtility {
             //Find the path to where the images are getting downloaded
             try{
                 Runtime.getRuntime().exec(command1);
-                String path = "C:\\Users\\Jasmeet Kaur Chawla\\AppData\\Roaming\\Wallplayper"; //Change the path here
-                String wallpaper= "C:\\Users\\Jasmeet Kaur Chawla\\AppData\\Roaming\\Wallplayper\\"+ getLatestFilefromDir(path); //add the path back here
+                String wallpaper= DOWNLOAD_FOLDER_WINDOWS+ getLatestFilefromDir(DOWNLOAD_FOLDER_WINDOWS); //add the path back here
 
                 User32.INSTANCE.SystemParametersInfo(0x0014, 0, wallpaper , 1);
             }
