@@ -17,6 +17,7 @@ import javafx.util.StringConverter;
 public class Controller implements Initializable {
 
     private Model _model;
+    private String text;
 
     /** These are javaFX specific variables, in order to modify an xml element the xml needs to have
      an fx:id which we will reference in code here(Controller.java). In order to manipulate a desired xml element you need
@@ -34,6 +35,8 @@ public class Controller implements Initializable {
     private Button saveBtn;
     @FXML
     private TextArea notepad;
+    @FXML
+    private Label noteConfirm;
 
 
     @Override
@@ -41,6 +44,8 @@ public class Controller implements Initializable {
         _model = new Model();
         configureSubredditLV();
         configureTimeSlider();
+        noteConfirm.setText("");
+        notepad.setPromptText("Enter a note");
     }
 
     private void configureSubredditLV() {
@@ -131,9 +136,10 @@ public class Controller implements Initializable {
     }
 
     public void saveBtnAction() {
-        notepad.getText();
-
-
+        text=notepad.getText();
+        notepad.setText(text);
+        noteConfirm.setText("Note has been saved!");
     }
+
 
 }
