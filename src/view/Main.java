@@ -47,14 +47,14 @@ public class Main extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if(System.getProperty("os.name").contains("windows")){
+        //if(System.getProperty("os.name").contains("windows")){
             ProcessData pd = new ProcessData();
             try {
                 pd.enableAutoStart();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        //}
 
         launch(args);
     }
