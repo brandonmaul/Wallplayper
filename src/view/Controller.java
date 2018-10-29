@@ -1,11 +1,18 @@
 package view;
 
+import com.sun.deploy.util.StringUtils;
 import javafx.scene.control.*;
 import model.Model;
 
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Properties;
 import java.util.ResourceBundle;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -29,6 +36,8 @@ public class Controller implements Initializable {
     private ListView<String> subredditLV;
     @FXML
     private Button deleteSubButton;
+    @FXML
+    private Button saveButton;
 
 
     @Override
@@ -78,6 +87,24 @@ public class Controller implements Initializable {
             _model.reloadSubs();
         }
         _model.setNewWallpaper();
+    }
+
+    public void saveButtonAction(){
+        try {
+            Properties properties = new Properties();
+            properties.setProperty("NSFWAllowed", Boolean.toString(_model.isNSFWAllowed()));
+            properties.setProperty("RefreshRate", Double.toString(_model.getRefreshRate()));
+            properties.setProperty("SubList", StringUtils.join(_model.getSubreddits(), ","));
+
+            File file = new File("Wallplayper.properties");
+            FileOutputStream fileOut = new FileOutputStream(file);
+            properties.store(fileOut, "Settings");
+            fileOut.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void nsfwButtonAction(){
