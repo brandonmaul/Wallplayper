@@ -10,7 +10,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Optional;
 import java.util.Properties;
 import java.util.ResourceBundle;
@@ -96,7 +95,7 @@ public class Controller implements Initializable {
             properties.setProperty("RefreshRate", Double.toString(_model.getRefreshRate()));
             properties.setProperty("SubList", StringUtils.join(_model.getSubreddits(), ","));
 
-            File file = new File("Wallplayper.properties");
+            File file = new File(_model.getDownloadFolder()+"Wallplayper.properties");
             FileOutputStream fileOut = new FileOutputStream(file);
             properties.store(fileOut, "Settings");
             fileOut.close();

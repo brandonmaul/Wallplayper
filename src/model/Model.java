@@ -3,11 +3,7 @@ package model;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Enumeration;
+import java.io.*;
 import java.util.Properties;
 
 public class Model {
@@ -20,6 +16,11 @@ public class Model {
     private double _refreshRate; //Double for storing the refresh time of the program (double will be from 0.0 - 3.0)
     private static ObservableList<String> _subreddits = FXCollections.observableArrayList();;
 
+
+    public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
+    public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";
+    public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
+
     public Model(){
         this.load();
         _extractorNeedsReloading = false;
@@ -29,11 +30,22 @@ public class Model {
 
     private void load(){
         try {
-            File file = new File("Wallplayper.properties");
-            FileInputStream fileInput = new FileInputStream(file);
             Properties properties = new Properties();
-            properties.load(fileInput);
-            fileInput.close();
+            File file = new File(getDownloadFolder()+"Wallplayper.properties");
+            FileInputStream fileInput = new FileInputStream(file);
+            if(fileInput.available() > 0){
+                properties.load(fileInput);
+                fileInput.close();
+            }else{
+                fileInput.close();
+                properties.setProperty("NSFWAllowed", Boolean.toString(false));
+                properties.setProperty("RefreshRate", Double.toString(1.0));
+                properties.setProperty("SubList", "wallpapers,skyrimporn,earthporn");
+
+                FileOutputStream fileOut = new FileOutputStream(file);
+                properties.store(fileOut, "Settings");
+                fileOut.close();
+            }
 
             this._NSFWAllowed = Boolean.parseBoolean(properties.getProperty("NSFWAllowed"));
             this._refreshRate = Double.parseDouble(properties.getProperty("RefreshRate"));
@@ -86,5 +98,15 @@ public class Model {
 
     public double getRefreshRate() {
         return _refreshRate;
+    }
+
+    public String getDownloadFolder(){
+        if(System.getProperty("os.name").startsWith("Mac")){
+            return DOWNLOAD_FOLDER_MAC;
+        }else if(System.getProperty("os.name").startsWith("Windows")){
+            return DOWNLOAD_FOLDER_WINDOWS;
+        }else{
+            return null;
+        }
     }
 }

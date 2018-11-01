@@ -61,7 +61,7 @@ public class Main extends Application{
 
     private void addAppToMacTray() {
         try {
-            com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(new File("src/view/AppImages/dockIcon.png")));
+            com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass().getResourceAsStream("resources/dockIcon.png")));
 
             // ensure awt toolkit is initialized.
             java.awt.Toolkit.getDefaultToolkit();
@@ -75,7 +75,7 @@ public class Main extends Application{
             // set up a system tray icon.
             java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
             //java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(new URL("http://icons.iconarchive.com/icons/scafer31000/bubble-circle-3/16/GameCenter-icon.png")));
-            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(new File("src/view/AppImages/menubarIcon.png")));
+            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream("resources/menubarIcon.png")));
             // if the user double-clicks on the tray icon, show the main app stage.
             trayIcon.addActionListener(event -> Platform.runLater(this::showStage));
 

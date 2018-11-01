@@ -22,10 +22,6 @@ import java.util.Random;
  */
 public class Extractor {
 
-    public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
-    public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";
-    public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
-
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks = new ArrayList<>(); // links to all images found
     private Model _m;
@@ -38,8 +34,10 @@ public class Extractor {
 
     public void load(){
         subreddits = Model.getSubreddits();
-        imageLinks.clear();
-        imageLinks = getImageLinks();
+        if(!subreddits.isEmpty()){
+            imageLinks.clear();
+            imageLinks = getImageLinks();
+        }
     }
 
     //Load must be called first before this command
@@ -62,19 +60,19 @@ public class Extractor {
             URL url = new URL(imageURL);
 
             if (System.getProperty("os.name").startsWith("Windows")) {
-                File dir = new File(DOWNLOAD_FOLDER_WINDOWS);
+                File dir = new File(_m.getDownloadFolder());
                 if(!dir.exists()){
                     dir.mkdir();
                 }
                 filename = filename.substring(0, filename.indexOf("."));
-                file = new File(DOWNLOAD_FOLDER_WINDOWS+filename+".bmp");
+                file = new File(_m.getDownloadFolder()+filename+".bmp");
 
             }else if (System.getProperty("os.name").startsWith("Mac")){
-                File dir = new File(DOWNLOAD_FOLDER_MAC);
+                File dir = new File(_m.getDownloadFolder());
                 if(!dir.exists()){
                     dir.mkdir();
                 }
-                file = new File(DOWNLOAD_FOLDER_MAC+filename);
+                file = new File(_m.getDownloadFolder()+filename);
             }
 
             file.deleteOnExit();
@@ -115,7 +113,6 @@ public class Extractor {
 
 
     private String readJSONFromURL(String urlString) {
-        //System.out.println("Reading JSON from " + urlString);
         StringBuilder sb = new StringBuilder();
         URLConnection uc = null;
         InputStreamReader in = null;
