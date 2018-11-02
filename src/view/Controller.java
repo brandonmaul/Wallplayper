@@ -1,14 +1,12 @@
 package view;
 
 import com.sun.deploy.util.StringUtils;
+import javafx.concurrent.Task;
 import javafx.scene.control.*;
 import model.Model;
 
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+import java.io.*;
 import java.net.URL;
 import java.util.Optional;
 import java.util.Properties;
@@ -37,11 +35,15 @@ public class Controller implements Initializable {
     private Button deleteSubButton;
     @FXML
     private Button saveButton;
+    @FXML
+    private ProgressIndicator progressBar;
+    @FXML
+    private Button updateNowButton;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        _model = new Model();
+        _model = new Model(this);
         configureSubredditLV();
         configureTimeSlider();
     }
@@ -82,10 +84,24 @@ public class Controller implements Initializable {
     }
 
     public void updateNowButtonAction(){
-        if(_model.getExtractorReloadBoolean()){
-            _model.reloadSubs();
-        }
-        _model.setNewWallpaper();
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                updateNowButton.setDisable(true);
+                progressBar.setProgress(0.0);
+                progressBar.setVisible(true);
+                if(_model.getExtractorReloadBoolean()){
+                    _model.reloadSubs();
+                }
+                progressBar.setProgress(.9);
+                _model.setNewWallpaper();
+                progressBar.setProgress(1.0);
+                progressBar.setVisible(false);
+                updateNowButton.setDisable(false);
+            }
+        });
+        t.start();
+
     }
 
     public void saveButtonAction(){
@@ -149,5 +165,9 @@ public class Controller implements Initializable {
                 _model.setRefreshRate(timeSlider.getValue());
             }
         });
+    }
+
+    public void updateProgressBar(Double d){
+        progressBar.setProgress(progressBar.getProgress()+d);
     }
 }

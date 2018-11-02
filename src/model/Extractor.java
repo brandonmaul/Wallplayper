@@ -11,6 +11,7 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import org.json.JSONObject;
 import org.json.JSONArray;
+import view.Controller;
 
 import java.util.Random;
 
@@ -25,30 +26,36 @@ public class Extractor {
     private List<String> subreddits; // subreddits to scan through
     private List<String> imageLinks = new ArrayList<>(); // links to all images found
     private Model _m;
+    private Controller _c;
 
 
-    public Extractor(Model m){
+    public Extractor(Model m, Controller c){
         _m = m;
+        _c = c;
         this.load();
     }
 
     public void load(){
-        subreddits = Model.getSubreddits();
-        if(!subreddits.isEmpty()){
-            imageLinks.clear();
-            imageLinks = getImageLinks();
-        }
+        Thread t = new Thread(() -> {
+            subreddits = Model.getSubreddits();
+            if(!subreddits.isEmpty()){
+                imageLinks.clear();
+                imageLinks = getImageLinks();
+            }
+            if(imageLinks.isEmpty()){
+                Alert alert = new Alert(Alert.AlertType.ERROR, "No images found on those subreddits.");
+                alert.showAndWait();
+            }
+        });
+        t.start();
+
+
     }
 
     //Load must be called first before this command
     public File get() {
         if(imageLinks.isEmpty()){
             load();
-            if(imageLinks.isEmpty()){
-                Alert alert = new Alert(Alert.AlertType.ERROR, "No images found on those subreddits.");
-                alert.showAndWait();
-                return null;
-            }
         }
         //returns a single link from the array of pulled wallpapers, at random.
         String imageURL = imageLinks.remove(new Random().nextInt(imageLinks.size()));
@@ -84,7 +91,7 @@ public class Extractor {
 
     public List<String> getImageLinks() {
         for(String subreddit : subreddits) {
-
+            _c.updateProgressBar((1.0/subreddits.size())/9.0);
             String firstPart = "https://reddit.com/r/";
             String fullLink = firstPart + subreddit + "/hot.json";
 
@@ -99,8 +106,8 @@ public class Extractor {
                 boolean isNSFW = post.getBoolean("over_18");
                 String link = post.getString("url");
                 if (link.contains(".jpg") | link.contains(".jpeg") | link.contains(".png")){
-
                     if (isNSFW == true && _m.isNSFWAllowed() == false){
+
                     }else{
                         imageLinks.add(link);
                     }
@@ -121,7 +128,7 @@ public class Extractor {
             URL url = new URL(urlString);
             uc = url.openConnection();
 
-            Thread.sleep(2000); // to comply with reddit's rate-limiting rules
+            //Thread.sleep(2000); // to comply with reddit's rate-limiting rules. Also i 'removed' this to fix #64 and increased the speed... #bugfixes
             uc.setRequestProperty("User-Agent", "Wallplayper"); // ^ same here. Please dont change.
 
             if(uc != null)

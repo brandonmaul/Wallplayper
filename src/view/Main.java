@@ -1,9 +1,6 @@
 package view;
 
-import java.awt.*;
-import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 
 import com.sun.javafx.application.PlatformImpl;
 import javafx.application.Application;
@@ -16,7 +13,6 @@ import javafx.stage.Stage;
 import model.ProcessData;
 
 import javax.imageio.ImageIO;
-import javax.swing.*;
 
 public class Main extends Application{
 
@@ -75,7 +71,7 @@ public class Main extends Application{
             // set up a system tray icon.
             java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
             //java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(new URL("http://icons.iconarchive.com/icons/scafer31000/bubble-circle-3/16/GameCenter-icon.png")));
-            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream("resources/menubarIcon.png")));
+            java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream("resources/dockIcon.png")));
             // if the user double-clicks on the tray icon, show the main app stage.
             trayIcon.addActionListener(event -> Platform.runLater(this::showStage));
 

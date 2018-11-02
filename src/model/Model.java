@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import view.Controller;
 
 import java.io.*;
 import java.util.Properties;
@@ -21,10 +22,10 @@ public class Model {
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
 
-    public Model(){
+    public Model(Controller c){
         this.load();
         _extractorNeedsReloading = false;
-        _extractor = new Extractor(this);
+        _extractor = new Extractor(this, c);
         _wallpaperUtil = new WallpaperUtility();
     }
 
