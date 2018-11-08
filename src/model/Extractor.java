@@ -8,6 +8,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -35,21 +36,21 @@ public class Extractor {
         this.load();
     }
 
-    public void load(){
-        Thread t = new Thread(() -> {
-            subreddits = Model.getSubreddits();
-            if(!subreddits.isEmpty()){
-                imageLinks.clear();
-                imageLinks = getImageLinks();
-            }
-            if(imageLinks.isEmpty()){
+    public boolean load(){
+        imageLinks.clear();
+        subreddits = Model.getSubreddits();
+        if(!subreddits.isEmpty()){
+            imageLinks.clear();
+            imageLinks = getImageLinks();
+        }
+        if(imageLinks.isEmpty()){
+            Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "No images found on those subreddits.");
                 alert.showAndWait();
-            }
-        });
-        t.start();
-
-
+            });
+            return false;
+        }
+        return true;
     }
 
     //Load must be called first before this command
@@ -57,6 +58,7 @@ public class Extractor {
         if(imageLinks.isEmpty()){
             load();
         }
+
         //returns a single link from the array of pulled wallpapers, at random.
         String imageURL = imageLinks.remove(new Random().nextInt(imageLinks.size()));
         String filename = imageURL.substring(imageURL.lastIndexOf("/")).substring(1);

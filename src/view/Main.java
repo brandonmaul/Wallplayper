@@ -16,12 +16,15 @@ import javax.imageio.ImageIO;
 
 public class Main extends Application{
 
+    private Controller _controller;
     private Stage _stage;
 
     @Override
     public void start(Stage stage) throws Exception {
         this._stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
+        Parent root = loader.load();
+        _controller = loader.getController();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Wallplayper");
@@ -29,9 +32,9 @@ public class Main extends Application{
 
 
         //for not exiting on close
-        Platform.setImplicitExit(false);
-        PlatformImpl.setTaskbarApplication(true);
         if(System.getProperty("os.name").startsWith("Mac")){
+            Platform.setImplicitExit(false);
+            PlatformImpl.setTaskbarApplication(true);
             javax.swing.SwingUtilities.invokeLater(this::addAppToMacTray);
         }
 
@@ -43,7 +46,7 @@ public class Main extends Application{
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        if(System.getProperty("os.name").contains("windows")){
+        if(System.getProperty("os.name").startsWith("Windows")){
             ProcessData pd = new ProcessData();
             try {
                 pd.enableAutoStart();
@@ -77,7 +80,7 @@ public class Main extends Application{
 
             // if the user selects the default menu item (which includes the app name),
             // show the main app stage.
-            java.awt.MenuItem openItem = new java.awt.MenuItem("Open");
+            java.awt.MenuItem openItem = new java.awt.MenuItem("Open Wallplayper");
             openItem.addActionListener(event -> Platform.runLater(this::showStage));
 
             // the convention for tray icons seems to be to set the default icon for opening

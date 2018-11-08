@@ -16,7 +16,7 @@ public class Model {
     private boolean _NSFWAllowed;
     private double _refreshRate; //Double for storing the refresh time of the program (double will be from 0.0 - 3.0)
     private static ObservableList<String> _subreddits = FXCollections.observableArrayList();;
-
+    private CustomTimer _timer;
 
     public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";
@@ -33,12 +33,14 @@ public class Model {
         try {
             Properties properties = new Properties();
             File file = new File(getDownloadFolder()+"Wallplayper.properties");
-            FileInputStream fileInput = new FileInputStream(file);
-            if(fileInput.available() > 0){
+            if(file.exists()){
+                FileInputStream fileInput = new FileInputStream(file);
                 properties.load(fileInput);
+                if(properties.getProperty("SubList").isEmpty()){
+                    properties.setProperty("SubList", "wallpapers,skyrimporn,earthporn");
+                }
                 fileInput.close();
             }else{
-                fileInput.close();
                 properties.setProperty("NSFWAllowed", Boolean.toString(false));
                 properties.setProperty("RefreshRate", Double.toString(1.0));
                 properties.setProperty("SubList", "wallpapers,skyrimporn,earthporn");
@@ -88,9 +90,10 @@ public class Model {
         return _extractorNeedsReloading;
     }
 
-    public void reloadSubs(){
-        _extractor.load();
-        setExtractorNeedsReloading(false);
+    public boolean reloadSubs(){
+        boolean bool = _extractor.load();
+        setExtractorNeedsReloading(!bool);
+        return bool;
     }
 
     public void setExtractorNeedsReloading(boolean b){

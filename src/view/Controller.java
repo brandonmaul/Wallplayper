@@ -1,16 +1,15 @@
 package view;
 
 import com.sun.deploy.util.StringUtils;
-import javafx.concurrent.Task;
 import javafx.scene.control.*;
+import model.CustomTimer;
 import model.Model;
 
 
 import java.io.*;
 import java.net.URL;
-import java.util.Optional;
-import java.util.Properties;
-import java.util.ResourceBundle;
+import java.util.*;
+
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
@@ -20,6 +19,8 @@ import javafx.util.StringConverter;
 public class Controller implements Initializable {
 
     private Model _model;
+
+    private CustomTimer _timer;
 
     /** These are javaFX specific variables, in order to modify an xml element the xml needs to have
      an fx:id which we will reference in code here(Controller.java). In order to manipulate a desired xml element you need
@@ -84,23 +85,20 @@ public class Controller implements Initializable {
     }
 
     public void updateNowButtonAction(){
-        Thread t = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                updateNowButton.setDisable(true);
-                progressBar.setProgress(0.0);
-                progressBar.setVisible(true);
-                if(_model.getExtractorReloadBoolean()){
-                    _model.reloadSubs();
-                }
-                progressBar.setProgress(.9);
-                _model.setNewWallpaper();
-                progressBar.setProgress(1.0);
-                progressBar.setVisible(false);
-                updateNowButton.setDisable(false);
-            }
-        });
-        t.start();
+        updateNowButton.setDisable(true);
+        progressBar.setProgress(0.0);
+        progressBar.setVisible(true);
+        boolean bool = true;
+        if(_model.getExtractorReloadBoolean()){
+            bool = _model.reloadSubs();
+        }
+        progressBar.setProgress(.9);
+        if(bool){
+            _model.setNewWallpaper();
+        }
+        progressBar.setProgress(1.0);
+        progressBar.setVisible(false);
+        updateNowButton.setDisable(false);
 
     }
 
@@ -120,6 +118,8 @@ public class Controller implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        _timer.start();
     }
 
     public void nsfwButtonAction(){
@@ -135,14 +135,14 @@ public class Controller implements Initializable {
     }
 
     private void configureTimeSlider(){
-        //for setting text on the timeslider
+        timeSlider.setValue(_model.getRefreshRate());
         timeSlider.setLabelFormatter(new StringConverter<Double>() {
             @Override
             public String toString(Double n) {
-                if (n < 0.5) return "Minute";
-                if (n < 1.5) return "Hour";
-                if (n < 2.5) return "Day";
-                return "Week";
+                if (n < 0.5) return "Manually";
+                if (n < 1.5) return "Minute";
+                if (n < 2.5) return "Hour";
+                return "Day";
             }
             @Override
             public Double fromString(String s) {
@@ -160,14 +160,19 @@ public class Controller implements Initializable {
                 }
             }
         });
+
         timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
             public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
                 _model.setRefreshRate(timeSlider.getValue());
             }
         });
+
+        _timer = new CustomTimer(_model, this);
+        _timer.start();
     }
 
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);
     }
+
 }

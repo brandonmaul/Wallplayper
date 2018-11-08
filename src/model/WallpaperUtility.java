@@ -39,7 +39,7 @@ public class WallpaperUtility {
         boolean SystemParametersInfo (int one, int two, String s ,int three);
     }
 
-    public void setWallpaper(File file) {
+    public File setWallpaper(File file) {
         if (_os.startsWith("Windows")) { //WINDOWS
             String command1 = "powershell.exe Set-ItemProperty -path 'HKCU:\\Control Panel\\Desktop\\' -name wallpaper -value \"" + file.getAbsolutePath() + "\"";
             //Find the path to where the images are getting downloaded
@@ -48,10 +48,12 @@ public class WallpaperUtility {
                 String wallpaper= DOWNLOAD_FOLDER_WINDOWS+ getLatestFilefromDir(DOWNLOAD_FOLDER_WINDOWS); //add the path back here
 
                 User32.INSTANCE.SystemParametersInfo(0x0014, 0, wallpaper , 1);
+                file.delete();
             }
 
 
             catch (Exception e){
+                System.out.println("WallpaperUtil.setWallpaper failed");
             }
 
         } else if (_os.startsWith("Mac")) { //MAC
@@ -66,11 +68,16 @@ public class WallpaperUtility {
             String[] args = { "osascript", "-e", command};
             try{
                 Process p = runtime.exec(args);
+                while(p.isAlive()){
+                }
+                file.delete();
             }catch (Exception e){
-
+                System.out.println("WallpaperUtil.setWallpaper failed");
             }
         } else {
             System.out.println("OS Not supported/found");
         }
+
+        return file;
     }
 }
