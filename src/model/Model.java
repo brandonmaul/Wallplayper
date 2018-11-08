@@ -16,7 +16,6 @@ public class Model {
     private boolean _NSFWAllowed;
     private double _refreshRate; //Double for storing the refresh time of the program (double will be from 0.0 - 3.0)
     private static ObservableList<String> _subreddits = FXCollections.observableArrayList();;
-    private CustomTimer _timer;
 
     public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";

@@ -51,4 +51,9 @@ public class CustomTimer {
             this.running = false;
         }
     }
+
+    public void exit() {
+        timerOb.cancel();
+        timerOb.purge();
+    }
 }

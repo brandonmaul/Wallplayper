@@ -22,7 +22,9 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         this._stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
+        Parent root = loader.load();
+        _controller = loader.getController();
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Wallplayper");
@@ -92,6 +94,7 @@ public class Main extends Application{
             // tray icon (removing the tray icon will also shut down AWT).
             java.awt.MenuItem exitItem = new java.awt.MenuItem("Exit");
             exitItem.addActionListener(event -> {
+                _controller.getTimer().exit();
                 Platform.exit();
                 tray.remove(trayIcon);
             });

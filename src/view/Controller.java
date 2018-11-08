@@ -15,6 +15,7 @@ import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.util.StringConverter;
+import oracle.jrockit.jfr.JFR;
 
 public class Controller implements Initializable {
 
@@ -175,4 +176,7 @@ public class Controller implements Initializable {
         progressBar.setProgress(progressBar.getProgress()+d);
     }
 
+    public CustomTimer getTimer() {
+        return _timer;
+    }
 }
