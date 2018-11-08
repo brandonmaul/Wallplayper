@@ -22,9 +22,7 @@ public class Main extends Application{
     @Override
     public void start(Stage stage) throws Exception {
         this._stage = stage;
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("view.fxml"));
-        Parent root = loader.load();
-        _controller = loader.getController();
+        Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
         Scene scene = new Scene(root);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Wallplayper");
