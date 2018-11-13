@@ -2,8 +2,10 @@ package model;
 
 import view.Controller;
 
+import java.util.Calendar;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 class CustomTimerTask extends TimerTask {
     Controller _c;
@@ -34,11 +36,11 @@ public class CustomTimer {
         double d = _m.getRefreshRate();
         if(d > 0.0){
             if(d == 1.0){
-                timerOb.scheduleAtFixedRate(new CustomTimerTask(_c), 0, 60000);//60000 for minutes
+                timerOb.schedule(new CustomTimerTask(_c), Calendar.getInstance().getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES));
             }else if(d == 2.0){
-                timerOb.scheduleAtFixedRate(new CustomTimerTask(_c), 0, 3600000); //Hour
+                timerOb.schedule(new CustomTimerTask(_c), Calendar.getInstance().getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS));
             }else if(d == 3.0){
-                timerOb.scheduleAtFixedRate(new CustomTimerTask(_c), 0, 86400000); //Day
+                timerOb.schedule(new CustomTimerTask(_c), Calendar.getInstance().getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
             }
             this.running = true;
         }

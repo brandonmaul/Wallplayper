@@ -41,16 +41,11 @@ public class WallpaperUtility {
 
     public File setWallpaper(File file) {
         if (_os.startsWith("Windows")) { //WINDOWS
-            String command1 = "powershell.exe Set-ItemProperty -path 'HKCU:\\Control Panel\\Desktop\\' -name wallpaper -value \"" + file.getAbsolutePath() + "\"";
-            //Find the path to where the images are getting downloaded
-            try{
-                Runtime.getRuntime().exec(command1);
-                String wallpaper= DOWNLOAD_FOLDER_WINDOWS+ getLatestFilefromDir(DOWNLOAD_FOLDER_WINDOWS); //add the path back here
-
-                User32.INSTANCE.SystemParametersInfo(0x0014, 0, wallpaper , 1);
+            try {
+                User32.INSTANCE.SystemParametersInfo(0x0014, 0, file.getAbsolutePath(), 1);
+                Thread.sleep(3000);
                 file.delete();
             }
-
 
             catch (Exception e){
                 System.out.println("WallpaperUtil.setWallpaper failed");
