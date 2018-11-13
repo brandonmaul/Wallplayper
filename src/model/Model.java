@@ -2,6 +2,7 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.CheckBox;
 import view.Controller;
 
 import java.io.*;
@@ -14,6 +15,8 @@ public class Model {
 
     private boolean _extractorNeedsReloading;
     private boolean _NSFWAllowed;
+    private boolean _redditEnabled;
+    private boolean _localsEnabled;
     private double _refreshRate; //Double for storing the refresh time of the program (double will be from 0.0 - 3.0)
     private static ObservableList<String> _subreddits = FXCollections.observableArrayList();;
 
@@ -43,12 +46,16 @@ public class Model {
                 properties.setProperty("NSFWAllowed", Boolean.toString(false));
                 properties.setProperty("RefreshRate", Double.toString(1.0));
                 properties.setProperty("SubList", "wallpapers,skyrimporn,earthporn");
+                properties.setProperty("EnableLocals", Boolean.toString(false));
+                properties.setProperty("EnableReddit", Boolean.toString(true));
 
                 FileOutputStream fileOut = new FileOutputStream(file);
                 properties.store(fileOut, "Settings");
                 fileOut.close();
             }
 
+            this._localsEnabled = Boolean.parseBoolean(properties.getProperty("EnableLocals"));
+            this._redditEnabled = Boolean.parseBoolean(properties.getProperty("EnableReddit"));
             this._NSFWAllowed = Boolean.parseBoolean(properties.getProperty("NSFWAllowed"));
             this._refreshRate = Double.parseDouble(properties.getProperty("RefreshRate"));
             this._subreddits.clear();
@@ -111,5 +118,13 @@ public class Model {
         }else{
             return null;
         }
+    }
+
+    public boolean getRedditEnabled() {
+        return _redditEnabled;
+    }
+
+    public boolean getLocalsEnabled() {
+        return _localsEnabled;
     }
 }

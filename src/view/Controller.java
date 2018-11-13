@@ -15,7 +15,6 @@ import javafx.fxml.FXML;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.util.StringConverter;
-import oracle.jrockit.jfr.JFR;
 
 public class Controller implements Initializable {
 
@@ -41,13 +40,23 @@ public class Controller implements Initializable {
     private ProgressIndicator progressBar;
     @FXML
     private Button updateNowButton;
+    @FXML
+    private CheckBox enableReddit;
+    @FXML
+    private CheckBox enableLocals;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         _model = new Model(this);
+        configureEnableCheckboxes();
         configureSubredditLV();
         configureTimeSlider();
+    }
+
+    private void configureEnableCheckboxes() {
+        enableReddit.setSelected(_model.getRedditEnabled());
+        enableLocals.setSelected(_model.getLocalsEnabled());
     }
 
     private void configureSubredditLV() {
@@ -109,6 +118,8 @@ public class Controller implements Initializable {
             properties.setProperty("NSFWAllowed", Boolean.toString(_model.isNSFWAllowed()));
             properties.setProperty("RefreshRate", Double.toString(_model.getRefreshRate()));
             properties.setProperty("SubList", StringUtils.join(_model.getSubreddits(), ","));
+            properties.setProperty("EnableLocals", Boolean.toString(enableLocals.isSelected()));
+            properties.setProperty("EnableReddit", Boolean.toString(enableReddit.isSelected()));
 
             File file = new File(_model.getDownloadFolder()+"Wallplayper.properties");
             FileOutputStream fileOut = new FileOutputStream(file);
