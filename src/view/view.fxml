@@ -119,7 +119,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Label layoutX="102.0" layoutY="14.0" text="Wallplayper&#10;&#10;Created by Baby Dont Hertz Me&#10;&#10;For use in CSE442&#10;University at Buffalo&#10;Fall 2018" textAlignment="CENTER" />
-                        <Label layoutX="9.0" layoutY="170.0" text="Special thanks to...&#10;&#10;Brandon Maul&#10;Elwin Cabrera &#10;Jasmeet Chawla&#10;Nathan Hall&#10;Giselle Ashby&#10;and of course, Matthew Hertz!" />
+                        <Label layoutX="64.0" layoutY="170.0" text="Developers:&#10;Giselle Ashby&#10;Elwin Cabrera &#10;Jasmeet Chawla&#10;Nathan Hall&#10;Brandon Maul&#10;&#10;Special thanks, of course, to Matthew Hertz!" textAlignment="CENTER" />
                      </children></AnchorPane>
               </content>
             </Tab>
