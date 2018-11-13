@@ -1,5 +1,6 @@
 package model;
 
+import java.awt.*;
 import java.io.*;
 import java.net.URL;
 import java.net.URLConnection;
@@ -8,6 +9,7 @@ import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import org.json.JSONObject;
 import org.json.JSONArray;
@@ -35,21 +37,21 @@ public class Extractor {
         this.load();
     }
 
-    public void load(){
-        Thread t = new Thread(() -> {
-            subreddits = Model.getSubreddits();
-            if(!subreddits.isEmpty()){
-                imageLinks.clear();
-                imageLinks = getImageLinks();
-            }
-            if(imageLinks.isEmpty()){
+    public boolean load(){
+        imageLinks.clear();
+        subreddits = Model.getSubreddits();
+        if(!subreddits.isEmpty()){
+            imageLinks.clear();
+            imageLinks = getImageLinks();
+        }
+        if(imageLinks.isEmpty()){
+            Platform.runLater(() -> {
                 Alert alert = new Alert(Alert.AlertType.ERROR, "No images found on those subreddits.");
                 alert.showAndWait();
-            }
-        });
-        t.start();
-
-
+            });
+            return false;
+        }
+        return true;
     }
 
     //Load must be called first before this command
@@ -107,9 +109,13 @@ public class Extractor {
                 String link = post.getString("url");
                 if (link.contains(".jpg") | link.contains(".jpeg") | link.contains(".png")){
                     if (isNSFW == true && _m.isNSFWAllowed() == false){
-
+                        //do nothing lol
                     }else{
-                        imageLinks.add(link);
+                        int imageWidth = post.getJSONObject("preview").getJSONArray("images").getJSONObject(0).getJSONObject("source").getInt("width");
+                        int imageHeight = post.getJSONObject("preview").getJSONArray("images").getJSONObject(0).getJSONObject("source").getInt("height");
+                        if(compareRes(imageWidth,imageHeight)){
+                            imageLinks.add(link);
+                        }
                     }
                 }
             }
@@ -117,6 +123,24 @@ public class Extractor {
 
         return imageLinks;
     }
+
+// Method that checks the resolution ...
+
+    //Compares height ... width to screen size
+    private boolean compareRes(int imageWidth, int imageHeight){
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        double screen_width = screenSize.getWidth();
+        double screen_height = screenSize.getHeight();
+        if ( screen_height > imageHeight || screen_width > imageWidth || imageHeight>imageWidth){
+
+
+            return false;
+        }else {
+            return true;
+        }
+
+    }
+
 
 
     private String readJSONFromURL(String urlString) {
