@@ -12,8 +12,6 @@ import java.util.*;
 
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.util.StringConverter;
 
 public class Controller implements Initializable {
@@ -62,14 +60,11 @@ public class Controller implements Initializable {
     private void configureSubredditLV() {
         subredditLV.setItems(_model.getSubreddits());
         subredditLV.getSelectionModel().setSelectionMode(SelectionMode.SINGLE);
-        subredditLV.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<String>() {
-            @Override
-            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                if(newValue != null){
-                    deleteSubButton.setDisable(false);
-                }else{
-                    deleteSubButton.setDisable(true);
-                }
+        subredditLV.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null){
+                deleteSubButton.setDisable(false);
+            }else{
+                deleteSubButton.setDisable(true);
             }
         });
     }
@@ -173,11 +168,7 @@ public class Controller implements Initializable {
             }
         });
 
-        timeSlider.valueProperty().addListener(new ChangeListener<Number>() {
-            public void changed(ObservableValue<? extends Number> ov, Number old_val, Number new_val) {
-                _model.setRefreshRate(timeSlider.getValue());
-            }
-        });
+        timeSlider.valueProperty().addListener((ov, old_val, new_val) -> _model.setRefreshRate(timeSlider.getValue()));
 
         _timer = new CustomTimer(_model, this);
         _timer.start();
