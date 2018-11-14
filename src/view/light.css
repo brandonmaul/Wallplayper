@@ -1,0 +1,14 @@
+.root{
+	-fx-base: #f5f5f5;
+    -fx-accent: #e7eff7 ;
+    -fx-default-button: #a6dbec;
+    -fx-focus-color: #007aff;
+    /*-fx-faint-focus-color: #8cc3ff;*/
+    -fx-focused-text-base-color : ladder(
+            -fx-selection-bar,
+            -fx-light-text-color 45%,
+            -fx-dark-text-color 46%,
+            -fx-dark-text-color 59%,
+            -fx-mid-text-color 60%
+        );
+}
