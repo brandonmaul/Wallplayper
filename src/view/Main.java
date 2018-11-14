@@ -57,7 +57,7 @@ public class Main extends Application{
 
     private void addAppToMacTray() {
         try {
-            com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass().getResourceAsStream("resources/dockIcon.png")));
+            //com.apple.eawt.Application.getApplication().setDockIconImage(ImageIO.read(getClass().getResourceAsStream("resources/dockIcon.png")));
 
             // ensure awt toolkit is initialized.
             java.awt.Toolkit.getDefaultToolkit();
