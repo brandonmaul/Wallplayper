@@ -7,19 +7,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.TimeUnit;
 
-class CustomTimerTask extends TimerTask {
-    Controller _c;
-
-    CustomTimerTask(Controller c){
-        _c = c;
-    }
-
-    @Override
-    public void run() {
-        _c.updateNowButtonAction();
-    }
-}
-
 public class CustomTimer {
     Model _m;
     Controller _c;
@@ -35,12 +22,16 @@ public class CustomTimer {
         stop();
         double d = _m.getRefreshRate();
         if(d > 0.0){
+            Calendar cal = Calendar.getInstance();
             if(d == 1.0){
-                timerOb.schedule(new CustomTimerTask(_c), Calendar.getInstance().getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES));
+                cal.add(Calendar.MINUTE, 1);
+                timerOb.schedule(new CustomTimerTask(_c), cal.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.MINUTES));
             }else if(d == 2.0){
-                timerOb.schedule(new CustomTimerTask(_c), Calendar.getInstance().getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS));
+                cal.add(Calendar.HOUR, 1);
+                timerOb.schedule(new CustomTimerTask(_c), cal.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.HOURS));
             }else if(d == 3.0){
-                timerOb.schedule(new CustomTimerTask(_c), Calendar.getInstance().getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
+                cal.add(Calendar.DATE, 1);
+                timerOb.schedule(new CustomTimerTask(_c), cal.getTime(), TimeUnit.MILLISECONDS.convert(1, TimeUnit.DAYS));
             }
             this.running = true;
         }
@@ -57,5 +48,18 @@ public class CustomTimer {
     public void exit() {
         timerOb.cancel();
         timerOb.purge();
+    }
+}
+
+class CustomTimerTask extends TimerTask {
+    Controller _c;
+
+    CustomTimerTask(Controller c){
+        _c = c;
+    }
+
+    @Override
+    public void run() {
+        _c.updateNowButtonAction();
     }
 }

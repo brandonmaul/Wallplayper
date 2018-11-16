@@ -2,7 +2,6 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.scene.control.CheckBox;
 import view.Controller;
 
 import java.io.*;
@@ -23,6 +22,7 @@ public class Model {
     public static final String DOWNLOAD_FOLDER_WINDOWS = System.getenv("APPDATA") + "\\Wallplayper\\";
     public static final String DOWNLOAD_FOLDER_MAC = System.getProperty("user.home") + "/Library/Application Support/Wallplayper/";
     public static final String DOWNLOAD_FOLDER_LINUX = System.getProperty("user.home") + "/Wallplayper/";
+
 
     public Model(Controller c){
         this.load();
@@ -120,8 +120,16 @@ public class Model {
         }
     }
 
+    public void setRedditEnabled(boolean bool) {
+        this._redditEnabled = bool;
+    }
+
     public boolean getRedditEnabled() {
         return _redditEnabled;
+    }
+
+    public void setLocalsEnabled(boolean bool) {
+        this._localsEnabled = bool;
     }
 
     public boolean getLocalsEnabled() {

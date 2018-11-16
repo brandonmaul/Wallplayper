@@ -69,13 +69,10 @@ public class Main extends Application{
 
             // set up a system tray icon.
             java.awt.SystemTray tray = java.awt.SystemTray.getSystemTray();
-            //java.awt.TrayIcon trayIcon = new java.awt.TrayIcon(ImageIO.read(new URL("http://icons.iconarchive.com/icons/scafer31000/bubble-circle-3/16/GameCenter-icon.png")));
             java.awt.TrayIcon trayIcon;
-            if(System.getProperty("os.name").startsWith("Windows")){
-                trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream("resources/winDockIcon.ico")));
-            }else{
-                trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream("resources/dockIcon.png")));
-            }
+            trayIcon = new java.awt.TrayIcon(ImageIO.read(getClass().getResourceAsStream("resources/dockIcon.png")));
+            trayIcon.setImageAutoSize(true);
+
             // if the user double-clicks on the tray icon, show the main app stage.
             trayIcon.addActionListener(event -> Platform.runLater(this::showStage));
 

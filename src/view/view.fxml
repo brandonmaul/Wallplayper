@@ -62,7 +62,7 @@
                                        <children>
                                           <ToolBar prefHeight="0.0" prefWidth="312.0">
                                              <items>
-                                                <CheckBox fx:id="enableLocals" mnemonicParsing="false" text="Enabled" />
+                                                <CheckBox fx:id="enableLocals" mnemonicParsing="false" onAction="#toggleLocalCheckbox" text="Enabled" />
                                                 <Pane HBox.hgrow="ALWAYS" />
                                                 <Button mnemonicParsing="false" text="Add Local Folder" />
                                                 <Button fx:id="deleteFolderButton" disable="true" mnemonicParsing="false" text="Delete" />
@@ -79,7 +79,7 @@
                                        <children>
                                           <ToolBar prefHeight="0.0" prefWidth="312.0">
                                             <items>
-                                                <CheckBox fx:id="enableReddit" mnemonicParsing="false" text="Enabled" />
+                                                <CheckBox fx:id="enableReddit" mnemonicParsing="false" onAction="#toggleRedditCheckbox" text="Enabled" />
                                                 <Pane HBox.hgrow="ALWAYS" />
                                                 <Button fx:id="addSubButton" mnemonicParsing="false" onAction="#addSubButtonAction" text="Add Subreddit" />
                                                 <Button fx:id="deleteSubButton" disable="true" mnemonicParsing="false" onAction="#deleteSubButtonAction" text="Delete" />

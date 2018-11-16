@@ -1,6 +1,7 @@
 package view;
 
 import com.sun.deploy.util.StringUtils;
+import javafx.application.Platform;
 import javafx.scene.control.*;
 import model.CustomTimer;
 import model.Model;
@@ -90,21 +91,27 @@ public class Controller implements Initializable {
     }
 
     public void updateNowButtonAction(){
-        updateNowButton.setDisable(true);
-        progressBar.setProgress(0.0);
-        progressBar.setVisible(true);
-        boolean bool = true;
-        if(_model.getExtractorReloadBoolean()){
-            bool = _model.reloadSubs();
+        if(enableReddit.isSelected()){
+            updateNowButton.setDisable(true);
+            progressBar.setProgress(0.0);
+            progressBar.setVisible(true);
+            boolean bool = true;
+            if(_model.getExtractorReloadBoolean()){
+                bool = _model.reloadSubs();
+            }
+            progressBar.setProgress(.9);
+            if(bool){
+                _model.setNewWallpaper();
+            }
+            progressBar.setProgress(1.0);
+            progressBar.setVisible(false);
+            updateNowButton.setDisable(false);
+        }else{
+            Platform.runLater(() -> {
+                Alert alert = new Alert(Alert.AlertType.ERROR, "No sources enabled.");
+                alert.showAndWait();
+            });
         }
-        progressBar.setProgress(.9);
-        if(bool){
-            _model.setNewWallpaper();
-        }
-        progressBar.setProgress(1.0);
-        progressBar.setVisible(false);
-        updateNowButton.setDisable(false);
-
     }
 
     public void saveButtonAction(){
@@ -180,5 +187,12 @@ public class Controller implements Initializable {
 
     public CustomTimer getTimer() {
         return _timer;
+    }
+
+    public void toggleLocalCheckbox(){
+        _model.setLocalsEnabled(!enableLocals.isSelected());
+    }
+    public void toggleRedditCheckbox(){
+        _model.setRedditEnabled(!enableReddit.isSelected());
     }
 }
