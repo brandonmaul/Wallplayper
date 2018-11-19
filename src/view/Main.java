@@ -34,8 +34,10 @@ public class Main extends Application{
         //for not exiting on close
         Platform.setImplicitExit(false);
         PlatformImpl.setTaskbarApplication(true);
-        javax.swing.SwingUtilities.invokeLater(this::addToSystemTray);
+        if(java.awt.SystemTray.isSupported()){
+            javax.swing.SwingUtilities.invokeLater(this::addToSystemTray);
 
+        }
         stage.setScene(scene);
         stage.show();
     }
