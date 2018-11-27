@@ -9,7 +9,6 @@ import model.CustomTimer;
 import model.Model;
 
 
-import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
@@ -20,11 +19,7 @@ import javafx.fxml.FXML;
 import javafx.util.StringConverter;
 
 
-import javafx.application.Application;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.layout.VBox;
-import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 public class Controller implements Initializable {
@@ -60,6 +55,9 @@ public class Controller implements Initializable {
     private AnchorPane anchorid;
     @FXML
     private TextField folderPath;
+
+
+    public static String folder = System.getProperty("user.home")+ "/Downloads/";
 
 
     @Override
@@ -200,13 +198,7 @@ public class Controller implements Initializable {
 
 
 
-    public void saveCurrImage(){
-        boolean bool = true;
-        if(bool){
-            _model.getWallpaper();
-        }
 
-    }
 
     public void setDownloadFolder(){
         final DirectoryChooser dirChooser = new DirectoryChooser();
@@ -215,11 +207,26 @@ public class Controller implements Initializable {
         File file = dirChooser.showDialog(stage);
 
         if (file != null){
-            System.out.println("Path: "+ file.getAbsolutePath());
+
             folderPath.setText(file.getAbsolutePath());
+            if(folderPath.getText()!=null) {
+                folder = folderPath.getText();
+            }
+        }
+    }
+
+    public void saveCurrImage(){
+        boolean bool = true;
+        if(bool){
+            _model.getWallpaper(folder);
         }
 
     }
+
+
+
+
+
 
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);

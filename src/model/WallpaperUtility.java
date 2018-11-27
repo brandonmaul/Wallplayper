@@ -97,17 +97,16 @@ public class WallpaperUtility {
 
 
 
-    public void getWallpaper(){
+    public void getWallpaper(String Folder){
 
         String home = System.getProperty("user.home");
+
         File file_try = lastFileModified(home+"/Library/Application Support/Wallplayper/");
-        System.out.println(file_try);
-
-
+        System.out.println(Folder);
 
         // renaming the file and moving it to a new location
         if(file_try.renameTo
-                (new File(home+"/Downloads/"+ file_try.getName())))
+                (new File(Folder+"/"+ file_try.getName())))
         {
             // if file copied successfully then delete the original file
             file_try.delete();

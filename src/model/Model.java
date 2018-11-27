@@ -120,8 +120,8 @@ public class Model {
         }
     }
 
-    public void getWallpaper(){
-            _wallpaperUtil.getWallpaper();
+    public void getWallpaper(String folder){
+            _wallpaperUtil.getWallpaper(folder);
 
         }
 
