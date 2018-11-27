@@ -120,6 +120,12 @@ public class Model {
         }
     }
 
+    public void getWallpaper(){
+            _wallpaperUtil.getWallpaper();
+
+        }
+
+
     public void setRedditEnabled(boolean bool) {
         this._redditEnabled = bool;
     }

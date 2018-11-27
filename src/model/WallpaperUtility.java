@@ -5,6 +5,7 @@ import java.io.File;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.win32.W32APIOptions;
+import java.io.FileFilter;
 
 
 
@@ -65,7 +66,7 @@ public class WallpaperUtility {
                 Process p = runtime.exec(args);
                 while(p.isAlive()){
                 }
-                file.delete();
+
             }catch (Exception e){
                 System.out.println("WallpaperUtil.setWallpaper failed");
             }
@@ -74,5 +75,42 @@ public class WallpaperUtility {
         }
 
         return file;
+    }
+
+    public static File lastFileModified(String dir) {
+        File fl = new File(dir);
+        File[] files = fl.listFiles(new FileFilter() {
+            public boolean accept(File file) {
+                return file.isFile();
+            }
+        });
+        long lastMod = Long.MIN_VALUE;
+        File choice = null;
+        for (File file : files) {
+            if (file.lastModified() > lastMod) {
+                choice = file;
+                lastMod = file.lastModified();
+            }
+        }
+        return choice;
+    }
+
+    public void getWallpaper(){
+        String home = System.getProperty("user.home");
+        File file_try = lastFileModified(home+"/Library/Application Support/Wallplayper/");
+        System.out.println(file_try);
+
+        // renaming the file and moving it to a new location
+        if(file_try.renameTo
+                (new File(home+"/Downloads/"+ file_try.getName())))
+        {
+            // if file copied successfully then delete the original file
+            file_try.delete();
+            System.out.println("File moved successfully");
+        }
+        else
+        {
+            System.out.println("Failed to move the file");
+        }
     }
 }

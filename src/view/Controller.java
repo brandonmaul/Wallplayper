@@ -181,6 +181,16 @@ public class Controller implements Initializable {
         _timer.start();
     }
 
+
+
+    public void saveCurrImage(){
+        boolean bool = true;
+        if(bool){
+            _model.getWallpaper();
+        }
+
+    }
+
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);
     }
