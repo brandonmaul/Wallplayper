@@ -3,17 +3,29 @@ package view;
 import com.sun.deploy.util.StringUtils;
 import javafx.application.Platform;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.DirectoryChooser;
 import model.CustomTimer;
 import model.Model;
 
 
+import java.awt.event.ActionEvent;
 import java.io.*;
 import java.net.URL;
 import java.util.*;
 
+
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.util.StringConverter;
+
+
+import javafx.application.Application;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class Controller implements Initializable {
 
@@ -43,6 +55,11 @@ public class Controller implements Initializable {
     private CheckBox enableReddit;
     @FXML
     private CheckBox enableLocals;
+
+    @FXML
+    private AnchorPane anchorid;
+    @FXML
+    private TextField folderPath;
 
 
     @Override
@@ -187,6 +204,19 @@ public class Controller implements Initializable {
         boolean bool = true;
         if(bool){
             _model.getWallpaper();
+        }
+
+    }
+
+    public void setDownloadFolder(){
+        final DirectoryChooser dirChooser = new DirectoryChooser();
+
+        Stage stage = (Stage) anchorid.getScene().getWindow();
+        File file = dirChooser.showDialog(stage);
+
+        if (file != null){
+            System.out.println("Path: "+ file.getAbsolutePath());
+            folderPath.setText(file.getAbsolutePath());
         }
 
     }

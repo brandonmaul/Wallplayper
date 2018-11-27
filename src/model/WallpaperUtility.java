@@ -95,10 +95,15 @@ public class WallpaperUtility {
         return choice;
     }
 
+
+
     public void getWallpaper(){
+
         String home = System.getProperty("user.home");
         File file_try = lastFileModified(home+"/Library/Application Support/Wallplayper/");
         System.out.println(file_try);
+
+
 
         // renaming the file and moving it to a new location
         if(file_try.renameTo
