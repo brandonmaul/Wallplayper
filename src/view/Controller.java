@@ -2,6 +2,8 @@ package view;
 
 import com.sun.deploy.util.StringUtils;
 import javafx.concurrent.Task;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
 import model.Model;
 
@@ -39,6 +41,8 @@ public class Controller implements Initializable {
     private ProgressIndicator progressBar;
     @FXML
     private Button updateNowButton;
+    @FXML
+    private CheckBox toggleDark;
 
 
     @Override
@@ -170,4 +174,10 @@ public class Controller implements Initializable {
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);
     }
+
+    public void setToggleDark(){
+        Main m = new Main();
+        m.switchTheme();
+    }
+
 }

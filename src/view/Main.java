@@ -17,16 +17,19 @@ import javax.imageio.ImageIO;
 public class Main extends Application{
 
     private Stage _stage;
+    private String _light = getClass().getResource("light.css").toExternalForm();
+    private String _dark = getClass().getResource("dark.css").toExternalForm();
+    public String _curTheme;
+    private static Parent _root;
 
     @Override
     public void start(Stage stage) throws Exception {
+        _root = setRoot();
         this._stage = stage;
-        Parent root = FXMLLoader.load(getClass().getResource("view.fxml"));
-        Scene scene = new Scene(root);
+        Scene scene = new Scene(_root);
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Wallplayper");
         stage.setResizable(false);
-
 
         //for not exiting on close
         Platform.setImplicitExit(false);
@@ -34,6 +37,10 @@ public class Main extends Application{
         if(System.getProperty("os.name").startsWith("Mac")){
             javax.swing.SwingUtilities.invokeLater(this::addAppToMacTray);
         }
+
+        _curTheme = _light;
+        _root.getStylesheets().clear();
+        _root.getStylesheets().add(_curTheme);
 
         stage.setScene(scene);
         stage.show();
@@ -53,6 +60,19 @@ public class Main extends Application{
         }
 
         launch(args);
+    }
+
+    public void switchTheme(){
+        if (_root.getStylesheets().contains(_light)){
+            _curTheme = _dark;
+            _root.getStylesheets().clear();
+            _root.getStylesheets().add(_curTheme);
+
+        } else {
+            _curTheme = _light;
+            _root.getStylesheets().clear();
+            _root.getStylesheets().add(_curTheme);
+        }
     }
 
     private void addAppToMacTray() {
@@ -116,4 +136,5 @@ public class Main extends Application{
             _stage.toFront();
         }
     }
+    public Parent setRoot() throws IOException{return FXMLLoader.load(getClass().getResource("view.fxml"));}
 }
