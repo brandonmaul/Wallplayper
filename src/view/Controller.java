@@ -22,6 +22,7 @@ import javafx.util.StringConverter;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
+
 public class Controller implements Initializable {
 
     private Model _model;
@@ -50,11 +51,13 @@ public class Controller implements Initializable {
     private CheckBox enableReddit;
     @FXML
     private CheckBox enableLocals;
-
     @FXML
     private AnchorPane anchorid;
     @FXML
     private TextField folderPath;
+    @FXML
+    private Label fileConfirmation;
+
 
 
     public static String folder = System.getProperty("user.home")+ "/Downloads/";
@@ -218,13 +221,12 @@ public class Controller implements Initializable {
     public void saveCurrImage(){
         boolean bool = true;
         if(bool){
-            _model.getWallpaper(folder);
+            String confirmation = _model.getWallpaper(folder);
+            fileConfirmation.setText(confirmation);
+
         }
 
     }
-
-
-
 
 
 

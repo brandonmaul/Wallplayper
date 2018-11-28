@@ -77,6 +77,7 @@ public class WallpaperUtility {
         return file;
     }
 
+    // Gets the last modified file.
     public static File lastFileModified(String dir) {
         File fl = new File(dir);
         File[] files = fl.listFiles(new FileFilter() {
@@ -97,24 +98,25 @@ public class WallpaperUtility {
 
 
 
-    public void getWallpaper(String Folder){
+    public String getWallpaper(String Folder){
 
         String home = System.getProperty("user.home");
 
         File file_try = lastFileModified(home+"/Library/Application Support/Wallplayper/");
-        System.out.println(Folder);
-
-        // renaming the file and moving it to a new location
-        if(file_try.renameTo
-                (new File(Folder+"/"+ file_try.getName())))
-        {
-            // if file copied successfully then delete the original file
-            file_try.delete();
-            System.out.println("File moved successfully");
+        if (file_try.getName().contains(".png")||file_try.getName().contains(".jpg")) {
+            if (file_try.renameTo
+                    (new File(Folder + "/" + file_try.getName()))) {
+                file_try.delete();
+                return "File moved successfully";
+            }
+            else
+            {
+                return "Failed to move the file";
+            }
         }
         else
         {
-            System.out.println("Failed to move the file");
+            return "Failed to move the file";
         }
     }
 }

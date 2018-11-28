@@ -47,6 +47,7 @@
                         <Button fx:id="updateNowButton" layoutX="153.0" layoutY="234.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="234.0" />
                         <Separator layoutY="114.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.bottomAnchor="202.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="114.0" />
                         <ProgressBar fx:id="progressBar" layoutX="100.0" layoutY="287.0" prefWidth="200.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="287.0" />
+                        <Label fx:id="fileConfirmation" layoutX="183.0" layoutY="279.0" />
                      </children>
                   </AnchorPane>
                </content>
@@ -57,7 +58,7 @@
                      <children>
                         <VBox prefHeight="320.0" prefWidth="400.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                            <children>
-                            <TitledPane collapsible="false" prefWidth="400.0" text="Local Files">
+                            <TitledPane fx:id="titlePane" collapsible="false" prefWidth="400.0" text="Local Files">
                                  <content>
                                     <VBox prefHeight="200.0" prefWidth="100.0">
                                        <children>
@@ -98,18 +99,19 @@
           </Tab>
             <Tab text="Downloads">
                <content>
-                  <SplitPane dividerPositions="0.75" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+                  <SplitPane dividerPositions="0.5625" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
                     <items>
                       <AnchorPane fx:id="anchorid" minHeight="0.0" minWidth="0.0" prefHeight="77.0" prefWidth="400.0">
                            <children>
                               <Text layoutX="96.0" layoutY="114.0" strokeType="OUTSIDE" strokeWidth="0.0" />
                               <Button fx:id="setDownloadFolder" layoutX="119.0" layoutY="74.0" mnemonicParsing="false" onAction="#setDownloadFolder" text="Set Download Folder" />
-                              <TextField fx:id="folderPath" layoutX="50.0" layoutY="27.0" prefHeight="27.0" prefWidth="284.0" />
+                              <TextField fx:id="folderPath" layoutX="50.0" layoutY="27.0" prefHeight="27.0" prefWidth="284.0" text="" />
                            </children>
                         </AnchorPane>
                       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                            <children>
                               <Button fx:id="saveCurrWallpaper" layoutX="118.0" layoutY="25.0" mnemonicParsing="false" onAction="#saveCurrImage" text="Save Current Wallpaper" />
+                              <Label fx:id="fileConfirmation" layoutX="166.0" layoutY="60.0" />
                            </children>
                         </AnchorPane>
                     </items>
