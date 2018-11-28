@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.Label?>
@@ -18,7 +19,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="root" stylesheets="@dark.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="root" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
    <center>
       <TabPane prefHeight="400.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -31,14 +32,23 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ToggleButton fx:id="nsfwButton" layoutX="176.0" layoutY="48.0" mnemonicParsing="false" onAction="#nsfwButtonAction" prefHeight="27.0" prefWidth="79.0" text="Enabled" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="48.0" />
+                        <ToggleButton fx:id="nsfwButton" layoutX="176.0" layoutY="48.0" mnemonicParsing="false" onAction="#nsfwButtonAction" prefHeight="27.0" prefWidth="79.0" text="Enabled" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="48.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></ToggleButton>
                         <Label layoutX="20.0" layoutY="136.0" text="Change Wallpaper Every...">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Slider fx:id="timeSlider" blockIncrement="0.0" layoutX="20.0" layoutY="169.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="16.0" prefWidth="286.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="169.0" />
-                        <Button fx:id="updateNowButton" layoutX="153.0" layoutY="234.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="234.0" />
+                        <Slider fx:id="timeSlider" blockIncrement="0.0" layoutX="20.0" layoutY="169.0" majorTickUnit="1.0" max="3.0" minorTickCount="0" prefHeight="16.0" prefWidth="286.0" showTickLabels="true" showTickMarks="true" snapToTicks="true" AnchorPane.bottomAnchor="114.0" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="169.0">
+                           <cursor>
+                              <Cursor fx:constant="H_RESIZE" />
+                           </cursor></Slider>
+                        <Button fx:id="updateNowButton" layoutX="153.0" layoutY="234.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="234.0">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor></Button>
                         <Separator layoutY="114.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.bottomAnchor="202.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="114.0" />
                         <ProgressBar fx:id="progressBar" layoutX="100.0" layoutY="287.0" prefWidth="200.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="287.0" />
                      </children>
@@ -62,11 +72,20 @@
                                        <children>
                                           <ToolBar prefHeight="0.0" prefWidth="312.0">
                                             <items>
-                                              <Button fx:id="addSubButton" mnemonicParsing="false" onAction="#addSubButtonAction" text="Add Subreddit" />
-                                                <Button fx:id="deleteSubButton" disable="true" mnemonicParsing="false" onAction="#deleteSubButtonAction" text="Delete" />
+                                              <Button fx:id="addSubButton" mnemonicParsing="false" onAction="#addSubButtonAction" text="Add Subreddit">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor></Button>
+                                                <Button fx:id="deleteSubButton" disable="true" mnemonicParsing="false" onAction="#deleteSubButtonAction" text="Delete">
+                                                   <cursor>
+                                                      <Cursor fx:constant="HAND" />
+                                                   </cursor></Button>
                                             </items>
                                           </ToolBar>
-                                          <ListView fx:id="subredditLV" editable="true" prefHeight="189.0" prefWidth="332.0" />
+                                          <ListView fx:id="subredditLV" editable="true" prefHeight="189.0" prefWidth="332.0">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor></ListView>
                                        </children>
                                     </VBox>
                                  </content>
@@ -92,8 +111,14 @@
    <bottom>
       <ButtonBar BorderPane.alignment="CENTER">
         <buttons>
-          <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" ButtonBar.buttonData="APPLY" />
-            <Button cancelButton="true" mnemonicParsing="false" text="Cancel" ButtonBar.buttonData="CANCEL_CLOSE" />
+          <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" ButtonBar.buttonData="APPLY">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
+            <Button cancelButton="true" mnemonicParsing="false" text="Cancel" ButtonBar.buttonData="CANCEL_CLOSE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
         </buttons>
          <padding>
             <Insets bottom="10.0" right="10.0" top="10.0" />
