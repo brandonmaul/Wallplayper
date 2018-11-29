@@ -38,7 +38,7 @@ public class Main extends Application{
             javax.swing.SwingUtilities.invokeLater(this::addAppToMacTray);
         }
 
-        _curTheme = _light;
+        _curTheme = _light; //Change this line to use the default from the prferences file
         _root.getStylesheets().clear();
         _root.getStylesheets().add(_curTheme);
 
