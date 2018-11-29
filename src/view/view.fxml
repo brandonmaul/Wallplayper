@@ -52,10 +52,6 @@
                            </cursor></Button>
                         <Separator layoutY="114.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.bottomAnchor="202.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="114.0" />
                         <ProgressBar fx:id="progressBar" layoutX="100.0" layoutY="287.0" prefWidth="200.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="287.0" />
-                        <CheckBox fx:id="toggleDark" layoutX="137.0" layoutY="91.0" mnemonicParsing="false" onAction="#setToggleDark" prefHeight="17.0" prefWidth="126.0" text="Toggle Dark Mode">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></CheckBox>
                      </children>
                   </AnchorPane>
                </content>
@@ -116,11 +112,16 @@
    <bottom>
       <ButtonBar BorderPane.alignment="CENTER">
         <buttons>
+            <CheckBox fx:id="toggleDark" mnemonicParsing="false" onAction="#setToggleDark" prefHeight="17.0" prefWidth="188.0" text="Dark Mode">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </CheckBox>
           <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" ButtonBar.buttonData="APPLY">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button cancelButton="true" mnemonicParsing="false" text="Cancel" ButtonBar.buttonData="CANCEL_CLOSE">
+            <Button cancelButton="true" mnemonicParsing="false" prefHeight="25.0" text="Cancel" ButtonBar.buttonData="CANCEL_CLOSE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
