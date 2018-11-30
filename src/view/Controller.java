@@ -1,7 +1,6 @@
 package view;
 
 import com.sun.deploy.util.StringUtils;
-import javafx.application.Platform;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
@@ -48,10 +47,6 @@ public class Controller implements Initializable {
     @FXML
     private Button updateNowButton;
     @FXML
-    private CheckBox enableReddit;
-    @FXML
-    private CheckBox enableLocals;
-    @FXML
     private AnchorPane anchorid;
     @FXML
     private TextField folderPath;
@@ -66,15 +61,11 @@ public class Controller implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         _model = new Model(this);
-        configureEnableCheckboxes();
+        folderPath.setText(_model.getDownloadFolder().getAbsolutePath());
         configureSubredditLV();
         configureTimeSlider();
     }
 
-    private void configureEnableCheckboxes() {
-        enableReddit.setSelected(_model.getRedditEnabled());
-        enableLocals.setSelected(_model.getLocalsEnabled());
-    }
 
     private void configureSubredditLV() {
         subredditLV.setItems(_model.getSubreddits());
@@ -109,27 +100,20 @@ public class Controller implements Initializable {
     }
 
     public void updateNowButtonAction(){
-        if(enableReddit.isSelected()){
-            updateNowButton.setDisable(true);
-            progressBar.setProgress(0.0);
-            progressBar.setVisible(true);
-            boolean bool = true;
-            if(_model.getExtractorReloadBoolean()){
-                bool = _model.reloadSubs();
-            }
-            progressBar.setProgress(.9);
-            if(bool){
-                _model.setNewWallpaper();
-            }
-            progressBar.setProgress(1.0);
-            progressBar.setVisible(false);
-            updateNowButton.setDisable(false);
-        }else{
-            Platform.runLater(() -> {
-                Alert alert = new Alert(Alert.AlertType.ERROR, "No sources enabled.");
-                alert.showAndWait();
-            });
+        updateNowButton.setDisable(true);
+        progressBar.setProgress(0.0);
+        progressBar.setVisible(true);
+        boolean bool = true;
+        if(_model.getExtractorReloadBoolean()){
+            bool = _model.reloadSubs();
         }
+        progressBar.setProgress(.9);
+        if(bool){
+            _model.setNewWallpaper();
+        }
+        progressBar.setProgress(1.0);
+        progressBar.setVisible(false);
+        updateNowButton.setDisable(false);
     }
 
     public void saveButtonAction(){
@@ -138,10 +122,9 @@ public class Controller implements Initializable {
             properties.setProperty("NSFWAllowed", Boolean.toString(_model.isNSFWAllowed()));
             properties.setProperty("RefreshRate", Double.toString(_model.getRefreshRate()));
             properties.setProperty("SubList", StringUtils.join(_model.getSubreddits(), ","));
-            properties.setProperty("EnableLocals", Boolean.toString(enableLocals.isSelected()));
-            properties.setProperty("EnableReddit", Boolean.toString(enableReddit.isSelected()));
+            properties.setProperty("DLLocation", _model.getDownloadFolder().getAbsolutePath());
 
-            File file = new File(_model.getDownloadFolder()+"Wallplayper.properties");
+            File file = new File(_model.getSystemApplicationFolder()+"Wallplayper.properties");
             FileOutputStream fileOut = new FileOutputStream(file);
             properties.store(fileOut, "Settings");
             fileOut.close();
@@ -194,23 +177,17 @@ public class Controller implements Initializable {
         });
 
         timeSlider.valueProperty().addListener((ov, old_val, new_val) -> _model.setRefreshRate(timeSlider.getValue()));
-
         _timer = new CustomTimer(_model, this);
         _timer.start();
     }
 
 
-
-
-
     public void setDownloadFolder(){
         final DirectoryChooser dirChooser = new DirectoryChooser();
-
         Stage stage = (Stage) anchorid.getScene().getWindow();
         File file = dirChooser.showDialog(stage);
-
         if (file != null){
-
+            _model.setDownloadFolder(file);
             folderPath.setText(file.getAbsolutePath());
             if(folderPath.getText()!=null) {
                 folder = folderPath.getText();
@@ -218,17 +195,10 @@ public class Controller implements Initializable {
         }
     }
 
-    public void saveCurrImage(){
-        boolean bool = true;
-        if(bool){
-            String confirmation = _model.getWallpaper(folder);
-            fileConfirmation.setText(confirmation);
-
-        }
-
+    public void saveCurrentImage(){
+        String confirmation = _model.downloadWallpaper();
+        fileConfirmation.setText(confirmation);
     }
-
-
 
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);
@@ -236,12 +206,5 @@ public class Controller implements Initializable {
 
     public CustomTimer getTimer() {
         return _timer;
-    }
-
-    public void toggleLocalCheckbox(){
-        _model.setLocalsEnabled(!enableLocals.isSelected());
-    }
-    public void toggleRedditCheckbox(){
-        _model.setRedditEnabled(!enableReddit.isSelected());
     }
 }

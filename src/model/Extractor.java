@@ -69,25 +69,27 @@ public class Extractor {
             URL url = new URL(imageURL);
 
             if (System.getProperty("os.name").startsWith("Windows")) {
-                File dir = new File(_m.getDownloadFolder());
+                File dir = new File(_m.getSystemApplicationFolder());
                 if(!dir.exists()){
                     dir.mkdir();
                 }
                 filename = filename.substring(0, filename.indexOf("."));
-                file = new File(_m.getDownloadFolder()+filename+".bmp");
+                file = new File(_m.getSystemApplicationFolder()+filename+".bmp");
 
             }else if (System.getProperty("os.name").startsWith("Mac")){
-                File dir = new File(_m.getDownloadFolder());
+                File dir = new File(_m.getSystemApplicationFolder());
                 if(!dir.exists()){
                     dir.mkdir();
                 }
-                file = new File(_m.getDownloadFolder()+filename);
+                file = new File(_m.getSystemApplicationFolder()+filename);
             }
 
             file.deleteOnExit();
             Files.copy(url.openStream(), file.toPath());
         } catch (Exception e) {
         }
+
+        file.deleteOnExit();
         return file;
     }
 
