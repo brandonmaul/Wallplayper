@@ -1,0 +1,15 @@
+.root {
+    -fx-base: #4a5059;
+    -fx-accent: #e7eff7 ;
+    -fx-default-button: #004d99;
+    -fx-focus-color: #efefef;
+    /*-fx-faint-focus-color: #efefef;*/
+    -fx-focused-text-base-color : ladder(
+            -fx-selection-bar,
+            -fx-light-text-color 45%,
+            -fx-dark-text-color 46%,
+            -fx-dark-text-color 59%,
+            -fx-mid-text-color 60%
+        );
+
+}

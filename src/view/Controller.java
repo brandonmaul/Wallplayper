@@ -52,10 +52,8 @@ public class Controller implements Initializable {
     private TextField folderPath;
     @FXML
     private Label fileConfirmation;
-
-
-
-    public static String folder = System.getProperty("user.home")+ "/Downloads/";
+    @FXML
+    private CheckBox toggleDark;
 
 
     @Override
@@ -189,9 +187,6 @@ public class Controller implements Initializable {
         if (file != null){
             _model.setDownloadFolder(file);
             folderPath.setText(file.getAbsolutePath());
-            if(folderPath.getText()!=null) {
-                folder = folderPath.getText();
-            }
         }
     }
 
@@ -203,8 +198,11 @@ public class Controller implements Initializable {
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);
     }
-
     public CustomTimer getTimer() {
         return _timer;
+    }
+    public void setToggleDark(){
+        Main m = new Main();
+        m.switchTheme();
     }
 }
