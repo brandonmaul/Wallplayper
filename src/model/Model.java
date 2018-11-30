@@ -41,13 +41,14 @@ public class Model {
                 FileInputStream fileInput = new FileInputStream(file);
                 properties.load(fileInput);
                 if (properties.getProperty("SubList").isEmpty()) {
-                    properties.setProperty("SubList", "wallpapers,skyrimporn,earthporn");
+                    properties.setProperty("SubList", "wallpapers,cityporn,earthporn,foodporn");
                 }
                 fileInput.close();
             } else {
+                //DEFAULT PROPERTIES
                 properties.setProperty("NSFWAllowed", Boolean.toString(false));
-                properties.setProperty("RefreshRate", Double.toString(1.0));
-                properties.setProperty("SubList", "wallpapers,skyrimporn,earthporn");
+                properties.setProperty("RefreshRate", Double.toString(0.0));
+                properties.setProperty("SubList", "wallpapers,cityporn,earthporn,foodporn");
                 properties.setProperty("DLLocation", getSystemApplicationFolder());
 
                 FileOutputStream fileOut = new FileOutputStream(file);
