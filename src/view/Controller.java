@@ -1,7 +1,10 @@
 package view;
 
 import com.sun.deploy.util.StringUtils;
+import javafx.scene.Parent;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.DirectoryChooser;
 import model.CustomTimer;
@@ -25,15 +28,16 @@ import javafx.stage.Stage;
 public class Controller implements Initializable {
 
     private Model _model;
-
+    private Parent _root;
     private CustomTimer _timer;
+
+    private String LIGHT_THEME = getClass().getResource("light.css").toExternalForm();
+    private String DARK_THEME = getClass().getResource("dark.css").toExternalForm();
 
     /** These are javaFX specific variables, in order to modify an xml element the xml needs to have
      an fx:id which we will reference in code here(Controller.java). In order to manipulate a desired xml element you need
      to make a variable here and name it the **same name as you put in fx:id** make sure to add an '@FXML'  before the vvariable name,
      this lets the controller  java class to link that variable to a specific xml element **/
-    @FXML
-    private ToggleButton nsfwButton;
     @FXML
     private Slider timeSlider;
     @FXML
@@ -54,11 +58,14 @@ public class Controller implements Initializable {
     private Label fileConfirmation;
     @FXML
     private CheckBox toggleDark;
+    @FXML
+    private CheckBox nsfwCheckbox;
 
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         _model = new Model(this);
+        nsfwCheckbox.setSelected(!_model.isNSFWAllowed());
         folderPath.setText(_model.getDownloadFolder().getAbsolutePath());
         configureSubredditLV();
         configureTimeSlider();
@@ -98,20 +105,23 @@ public class Controller implements Initializable {
     }
 
     public void updateNowButtonAction(){
-        updateNowButton.setDisable(true);
-        progressBar.setProgress(0.0);
-        progressBar.setVisible(true);
-        boolean bool = true;
-        if(_model.getExtractorReloadBoolean()){
-            bool = _model.reloadSubs();
-        }
-        progressBar.setProgress(.9);
-        if(bool){
-            _model.setNewWallpaper();
-        }
-        progressBar.setProgress(1.0);
-        progressBar.setVisible(false);
-        updateNowButton.setDisable(false);
+        Thread thread = new Thread() {
+            public void run(){
+                updateNowButton.setDisable(true);
+                progressBar.setVisible(true);
+                boolean bool = true;
+                if(_model.getExtractorReloadBoolean()){
+                    bool = _model.reloadSubs();
+                }
+                if(bool){
+                    _model.setNewWallpaper(progressBar, updateNowButton);
+                }else{
+                    progressBar.setVisible(false);
+                    updateNowButton.setDisable(false);
+                }
+            }
+        };
+        thread.start();
     }
 
     public void saveButtonAction(){
@@ -121,7 +131,11 @@ public class Controller implements Initializable {
             properties.setProperty("RefreshRate", Double.toString(_model.getRefreshRate()));
             properties.setProperty("SubList", StringUtils.join(_model.getSubreddits(), ","));
             properties.setProperty("DLLocation", _model.getDownloadFolder().getAbsolutePath());
-
+            if(_model.getTheme() == "DARK"){
+                properties.setProperty("Theme", "DARK");
+            }else{
+                properties.setProperty("Theme", "LIGHT");
+            }
             File file = new File(_model.getSystemApplicationFolder()+"Wallplayper.properties");
             FileOutputStream fileOut = new FileOutputStream(file);
             properties.store(fileOut, "Settings");
@@ -136,15 +150,9 @@ public class Controller implements Initializable {
     }
 
     public void nsfwButtonAction(){
-        if(!_model.isNSFWAllowed()){
-            nsfwButton.setText("Disabled");
-            _model.toggleNSFWBoolean();
-            _model.setExtractorNeedsReloading(true);
-        } else {
-            nsfwButton.setText("Enabled");
-            _model.toggleNSFWBoolean();
-            _model.setExtractorNeedsReloading(true);
-        }
+        _model.toggleNSFWBoolean();
+        nsfwCheckbox.setSelected(!_model.isNSFWAllowed());
+        _model.setExtractorNeedsReloading(true);
     }
 
     private void configureTimeSlider(){
@@ -198,11 +206,33 @@ public class Controller implements Initializable {
     public void updateProgressBar(Double d){
         progressBar.setProgress(progressBar.getProgress()+d);
     }
+
     public CustomTimer getTimer() {
         return _timer;
     }
+
     public void setToggleDark(){
-        Main m = new Main();
-        m.switchTheme();
+        if (_root.getStylesheets().contains(LIGHT_THEME)){
+            _model.setTheme("DARK");
+            _root.getStylesheets().clear();
+            _root.getStylesheets().add(DARK_THEME);
+
+        } else {
+            _model.setTheme("LIGHT");
+            _root.getStylesheets().clear();
+            _root.getStylesheets().add(LIGHT_THEME);
+        }
+    }
+
+    public void setRoot(Parent p){
+        _root = p;
+        _root.getStylesheets().clear();
+        if(_model.getTheme().equals("DARK")){
+            _root.getStylesheets().add(DARK_THEME);
+            toggleDark.setSelected(true);
+        }else{
+            _root.getStylesheets().add(LIGHT_THEME);
+            toggleDark.setSelected(false);
+        }
     }
 }

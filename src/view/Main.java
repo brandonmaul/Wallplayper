@@ -3,6 +3,7 @@ package view;
 import java.io.IOException;
 
 import com.sun.javafx.application.PlatformImpl;
+import com.sun.javafx.css.Stylesheet;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -18,9 +19,6 @@ public class Main extends Application{
 
     private Controller _controller;
     private Stage _stage;
-    private String _light = getClass().getResource("light.css").toExternalForm();
-    private String _dark = getClass().getResource("dark.css").toExternalForm();
-    public String _curTheme;
     private static Parent _root;
 
     @Override
@@ -33,6 +31,7 @@ public class Main extends Application{
         scene.setFill(Color.TRANSPARENT);
         stage.setTitle("Wallplayper");
         stage.setResizable(false);
+        _controller.setRoot(_root);
 
         //for not exiting on close
         Platform.setImplicitExit(false);
@@ -40,9 +39,6 @@ public class Main extends Application{
         if(java.awt.SystemTray.isSupported()){
             javax.swing.SwingUtilities.invokeLater(this::addToSystemTray);
         }
-        _curTheme = _light; //Change this line to use the default from the preferences file
-        _root.getStylesheets().clear();
-        _root.getStylesheets().add(_curTheme);
 
         stage.setScene(scene);
         stage.show();
@@ -62,19 +58,6 @@ public class Main extends Application{
         }
 
         launch(args);
-    }
-
-    public void switchTheme(){
-        if (_root.getStylesheets().contains(_light)){
-            _curTheme = _dark;
-            _root.getStylesheets().clear();
-            _root.getStylesheets().add(_curTheme);
-
-        } else {
-            _curTheme = _light;
-            _root.getStylesheets().clear();
-            _root.getStylesheets().add(_curTheme);
-        }
     }
 
     private void addToSystemTray() {

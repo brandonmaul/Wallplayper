@@ -7,7 +7,7 @@
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ProgressIndicator?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.Slider?>
 <?import javafx.scene.control.SplitPane?>
@@ -15,7 +15,6 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
-<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -24,7 +23,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="root" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="400.0" styleClass="root" stylesheets="@light.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller">
    <center>
       <TabPane prefHeight="400.0" prefWidth="400.0" tabClosingPolicy="UNAVAILABLE" BorderPane.alignment="CENTER">
         <tabs>
@@ -32,15 +31,11 @@
                <content>
                   <AnchorPane prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label layoutX="59.0" layoutY="51.0" text="NSFW Filter">
+                        <Label layoutX="100.0" layoutY="51.0" text="Enable NSFW Filter">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <ToggleButton fx:id="nsfwButton" layoutX="176.0" layoutY="48.0" mnemonicParsing="false" onAction="#nsfwButtonAction" prefHeight="27.0" prefWidth="79.0" text="Enabled" AnchorPane.bottomAnchor="245.0" AnchorPane.leftAnchor="176.0" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="48.0">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor></ToggleButton>
                         <Label layoutX="20.0" layoutY="136.0" text="Change Wallpaper Every...">
                            <font>
                               <Font size="16.0" />
@@ -50,12 +45,13 @@
                            <cursor>
                               <Cursor fx:constant="H_RESIZE" />
                            </cursor></Slider>
-                        <Button fx:id="updateNowButton" layoutX="153.0" layoutY="234.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="234.0">
+                        <Button fx:id="updateNowButton" layoutX="153.0" layoutY="226.0" mnemonicParsing="false" onAction="#updateNowButtonAction" text="Update Now" AnchorPane.bottomAnchor="68.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="153.0" AnchorPane.topAnchor="226.0">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor></Button>
                         <Separator layoutY="114.0" prefHeight="5.0" prefWidth="339.0" AnchorPane.bottomAnchor="202.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="114.0" />
-                        <ProgressBar fx:id="progressBar" layoutX="100.0" layoutY="287.0" prefWidth="200.0" progress="0.0" visible="false" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="287.0" />
+                        <CheckBox fx:id="nsfwCheckbox" layoutX="265.0" layoutY="52.0" mnemonicParsing="false" onAction="#nsfwButtonAction" AnchorPane.leftAnchor="265.0" AnchorPane.rightAnchor="111.0" />
+                        <ProgressIndicator fx:id="progressBar" layoutX="174.0" layoutY="261.0" visible="false" />
                      </children>
                   </AnchorPane>
                </content>
@@ -123,7 +119,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </CheckBox>
-          <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#saveButtonAction" text="Save" ButtonBar.buttonData="APPLY">
+          <Button fx:id="saveButton" defaultButton="true" mnemonicParsing="false" onAction="#saveButtonAction" text="Save Settings" ButtonBar.buttonData="APPLY">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>

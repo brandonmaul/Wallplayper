@@ -2,6 +2,8 @@ package model;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 import view.Controller;
 
 import java.io.*;
@@ -15,6 +17,7 @@ public class Model {
 
     private File _downloadFolder;
     private File _lastImage;
+    private String _theme;
     private boolean _extractorNeedsReloading;
     private boolean _NSFWAllowed;
     private double _refreshRate; //Double for storing the refresh time of the program (double will be from 0.0 - 3.0)
@@ -49,7 +52,8 @@ public class Model {
                 properties.setProperty("NSFWAllowed", Boolean.toString(false));
                 properties.setProperty("RefreshRate", Double.toString(0.0));
                 properties.setProperty("SubList", "wallpapers,cityporn,earthporn,foodporn");
-                properties.setProperty("DLLocation", getSystemApplicationFolder());
+                properties.setProperty("DLLocation", System.getProperty("user.home") + File.separator + "Desktop");
+                properties.setProperty("Theme", "LIGHT");
 
                 FileOutputStream fileOut = new FileOutputStream(file);
                 properties.store(fileOut, "Settings");
@@ -59,6 +63,7 @@ public class Model {
             this._NSFWAllowed = Boolean.parseBoolean(properties.getProperty("NSFWAllowed"));
             this._refreshRate = Double.parseDouble(properties.getProperty("RefreshRate"));
             this._downloadFolder = new File(properties.getProperty("DLLocation"));
+            this._theme = properties.getProperty("Theme");
             this._subreddits.clear();
             for (String s : properties.getProperty("SubList").split(",")) {
                 this._subreddits.add(s);
@@ -70,13 +75,13 @@ public class Model {
         }
     }
 
-    public void setNewWallpaper() {
+    public void setNewWallpaper(ProgressIndicator p, Button b) {
         File file = _extractor.get();
         if (file != null) {
             if (_lastImage != null) {
                 this._lastImage.delete();
             }
-            _wallpaperUtil.setWallpaper(file);
+            _wallpaperUtil.setWallpaper(file, p, b);
             this._lastImage = file;
         }
     }
@@ -151,5 +156,13 @@ public class Model {
 
     public File getLastImage(){
         return _lastImage;
+    }
+
+
+    public String getTheme() {
+        return _theme;
+    }
+    public void setTheme(String s) {
+        _theme = s;
     }
 }

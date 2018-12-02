@@ -2,9 +2,13 @@ package model;
 
 
 import java.io.File;
+
+import com.sun.javaws.progress.Progress;
 import com.sun.jna.Library;
 import com.sun.jna.Native;
 import com.sun.jna.win32.W32APIOptions;
+import javafx.scene.control.Button;
+import javafx.scene.control.ProgressIndicator;
 
 
 public class WallpaperUtility {
@@ -22,7 +26,7 @@ public class WallpaperUtility {
         boolean SystemParametersInfo(int one, int two, String s, int three);
     }
 
-    public File setWallpaper(File file) {
+    public File setWallpaper(File file, ProgressIndicator p, Button b) {
         if (_os.startsWith("Windows")) { //WINDOWS
             try {
                 User32.INSTANCE.SystemParametersInfo(0x0014, 0, file.getAbsolutePath(), 1);
@@ -41,7 +45,12 @@ public class WallpaperUtility {
 
             String[] args = {"osascript", "-e", command};
             try {
-                runtime.exec(args);
+                Process exec = runtime.exec(args);
+                while(exec.isAlive()){
+                    //busywait
+                }
+                p.setVisible(false);
+                b.setDisable(false);
 
             } catch (Exception e) {
                 System.out.println("WallpaperUtil.setWallpaper failed");
