@@ -1,4 +1,4 @@
-# Wallpaper Maker 
+# Wallplayper - Wallpapers from Reddit 
 Group Project for CSE422 - Software Engineering with Matthew Hertz
 
 
